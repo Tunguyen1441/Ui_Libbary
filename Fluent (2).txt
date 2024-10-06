@@ -912,7 +912,7 @@ return function(L_174_arg0, L_175_arg1, L_176_arg2)
 L_176_arg2 = L_176_arg2 or false
 local L_177_ = {}
 L_177_.Title = L_172_('TextLabel', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 TextColor3 = Color3.fromRGB(200, 200, 200),
 TextSize = 14,
 TextWrapped = true,
@@ -1029,7 +1029,7 @@ BackgroundColor3 = 'DialogHolderLine'
 L_198_.ButtonHolder
 })
 L_198_.Title = L_193_('TextLabel', {
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal),
 Text = 'Dialog',
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 22,
@@ -1118,7 +1118,7 @@ local L_221_, L_222_ = L_220_.New, L_219_.Spring.new
 return function(L_223_arg0, L_224_arg1, L_225_arg2, L_226_arg3)
 local L_227_ = {}
 L_227_.TitleLabel = L_221_('TextLabel', {
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.Medium, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.Medium, Enum.FontStyle.Normal),
 Text = L_223_arg0,
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 13,
@@ -1131,7 +1131,7 @@ TextColor3 = 'Text'
 }
 })
 L_227_.DescLabel = L_221_('TextLabel', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 Text = L_224_arg1,
 TextColor3 = Color3.fromRGB(200, 200, 200),
 TextSize = 12,
@@ -1264,7 +1264,7 @@ Text = L_252_arg1.Title,
 RichText = true,
 TextColor3 = Color3.fromRGB(255, 255, 255),
 TextTransparency = 0,
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 TextSize = 13,
 TextXAlignment = 'Left',
 TextYAlignment = 'Center',
@@ -1276,7 +1276,7 @@ TextColor3 = 'Text'
 }
 })
 L_253_.ContentLabel = L_247_('TextLabel', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 Text = L_252_arg1.Content,
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 14,
@@ -1291,7 +1291,7 @@ TextColor3 = 'Text'
 }
 })
 L_253_.SubContentLabel = L_247_('TextLabel', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 Text = L_252_arg1.SubContent,
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 14,
@@ -1511,7 +1511,7 @@ Text = L_289_arg1,
 RichText = true,
 TextColor3 = Color3.fromRGB(255, 255, 255),
 TextTransparency = 0,
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
 TextSize = 12,
 TextXAlignment = 'Left',
 TextYAlignment = 'Center',
@@ -1638,7 +1638,7 @@ return function(L_319_arg0, L_320_arg1)
 L_320_arg1 = L_320_arg1 or false
 local L_321_ = {}
 L_321_.Input = L_318_('TextBox', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 TextColor3 = Color3.fromRGB(200, 200, 200),
 TextSize = 14,
 TextXAlignment = Enum.TextXAlignment.Left,
@@ -1813,7 +1813,7 @@ SortOrder = Enum.SortOrder.LayoutOrder
 L_338_('TextLabel', {
 RichText = true,
 Text = L_340_arg0.Title,
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
 TextSize = 12,
 TextXAlignment = 'Left',
 TextYAlignment = 'Center',
@@ -1828,7 +1828,7 @@ L_338_('TextLabel', {
 RichText = true,
 Text = L_340_arg0.SubTitle,
 TextTransparency = 0.4,
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
 TextSize = 12,
 TextXAlignment = 'Left',
 TextYAlignment = 'Center',
@@ -2121,7 +2121,7 @@ function L_371_.Dialog(L_417_arg0, L_418_arg1)
 local L_419_ = L_388_:Create()
 L_419_.Title.Text = L_418_arg1.Title
 local L_420_ = L_368_('TextLabel', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 Text = L_418_arg1.Content,
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 14,
@@ -2425,7 +2425,7 @@ L_558_.Frame.Size = UDim2.new(0, 90, 0, 32)
 return L_558_
 end, function(L_559_arg0, L_560_arg1)
 return L_512_('TextLabel', {
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.Medium, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.Medium, Enum.FontStyle.Normal),
 Text = L_559_arg0,
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 13,
@@ -2804,7 +2804,7 @@ L_627_.DescLabel.Size = UDim2.new(1, -170, 0, 14)
 L_626_.SetTitle = L_627_.SetTitle
 L_626_.SetDesc = L_627_.SetDesc
 local L_628_, L_629_ = L_619_('TextLabel', {
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
 Text = 'Value',
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 13,
@@ -3001,7 +3001,7 @@ L_619_('UICorner', {
 CornerRadius = UDim.new(0, 2)
 })
 }), L_619_('TextLabel', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 Text = L_663_forvar1,
 TextColor3 = Color3.fromRGB(200, 200, 200),
 TextSize = 13,
@@ -3272,7 +3272,7 @@ end
 L_739_.SetTitle = L_741_.SetTitle
 L_739_.SetDesc = L_741_.SetDesc
 local L_742_ = L_732_('TextLabel', {
-FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.jsonn', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
+FontFace = Font.new('rbxasset://fonts/families/BuilderSansExtraBold.json', Enum.FontWeight.Regular, Enum.FontStyle.Normal),
 Text = L_737_arg2.Default,
 TextColor3 = Color3.fromRGB(240, 240, 240),
 TextSize = 13,
@@ -3476,7 +3476,7 @@ L_786_('UICorner', {
 CornerRadius = UDim.new(1, 0)
 })
 }), L_786_('TextLabel', {
-FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.jsonn',
+FontFace = Font.new'rbxasset://fonts/families/BuilderSansExtraBold.json',
 Text = 'Value',
 TextSize = 11,
 TextWrapped = true,

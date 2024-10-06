@@ -2072,42 +2072,7 @@ end
 end
 end)
 
-if Third_Sea then
-local MiscFarm = Tabs.Main:AddSection("Bone Farm")
 
-local StatusBone = Tabs.Main:AddParagraph({
-    Title = "Bone Status",
-    Content = ""
-})
-	spawn(function()
-		pcall(function()
-			while wait() do
-				StatusBone:SetDesc("You Have : "..tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check").." Bones"))
-			end
-		end)
-	end)
-
-
-local ToggleRandomBone = Tabs.Main:AddToggle("ToggleRandomBone", {Title = "Auto Random Bone",Description = "", Default = false })
-ToggleRandomBone:OnChanged(function(Value)  
-		_G.AutoRandomBone = Value
-end)
-Options.ToggleRandomBone:SetValue(false)
-	
-spawn(function()
-	while wait(0.0000000000000000000000000000000000000000000000000001) do
-	if _G.AutoRandomBone then
-	local args = {
-	 [1] = "Bones",
-	 [2] = "Buy",
-	 [3] = 1,
-	 [4] = 1
-	}
-	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-	end
-	end
-	end)
-end
 if Third_Sea then
 local MiscFarm = Tabs.Main:AddSection("Katakuri Farm")
 local Mob_Kill_Cake_Prince = Tabs.Main:AddParagraph({

@@ -3,8 +3,8 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
-    Title = "Hiru Hub",
-    SubTitle = "Version Beta 6⁵ | By Nguyen Vu Duy",
+    Title = "Mera Hub",
+    SubTitle = "Tứ nguyễn",
     TabWidth = 160,
     Size = UDim2.fromOffset(620, 300),
     Acrylic = true,
@@ -12,7 +12,6 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
-    home = Window:AddTab({ Title = "Tab Info", Icon = "activity" }),
     Main = Window:AddTab({ Title = "Tab Farm", Icon = "home" }),
     Sea = Window:AddTab({ Title = "Tab Sea Event", Icon = "anchor" }),
     ITM = Window:AddTab({ Title = "Tab Items", Icon = "sword" }),
@@ -1097,7 +1096,7 @@ end
         Speed = 600
     end
     if BypassTP then
-        if Distance > 1000 and not AutoNextIsland and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
+        if Distance > 500 and not AutoNextIsland and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
             pcall(function()
                 tween:Cancel()
                 fkwarp = false
@@ -1970,22 +1969,6 @@ end
 end
 end)
 
-if Third_Sea then
-local MiscFarm = Tabs.Main:AddSection("Bone Farm")
-
-local StatusBone = Tabs.Main:AddParagraph({
-    Title = "Bone Status",
-    Content = ""
-})
-	spawn(function()
-		pcall(function()
-			while wait() do
-				StatusBone:SetDesc("You Have : "..tostring(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check").." Bones"))
-			end
-		end)
-	end)
-
-
 local ToggleBone = Tabs.Main:AddToggle("ToggleBone", {
     Title = "Auto farm Bone",
     Description = "", 
@@ -2068,8 +2051,7 @@ spawn(function()
 	end
 	end
 	end)
-end
-if Third_Sea then
+
 local MiscFarm = Tabs.Main:AddSection("Katakuri Farm")
 local Mob_Kill_Cake_Prince = Tabs.Main:AddParagraph({
     Title = "Check Katakuri Spam",
@@ -2166,7 +2148,6 @@ spawn(function()
       _G.SpawnCakePrince = Value
     end)
     Options.ToggleSpawnCake:SetValue(true)
-end
 
 spawn(function()
   while wait() do

@@ -1655,7 +1655,7 @@ end)
         end
     end)
     
-    local Mastery = Tabs.Cc:AddSection("Mastery Farm")
+    local Mastery = Tabs.Main:AddSection("Genaral")
     local DropdownMastery = Tabs.Main:AddDropdown("DropdownMastery", {
         Title = "Select Farm",
         Description = "",

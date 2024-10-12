@@ -13,11 +13,11 @@ local Window = Fluent:CreateWindow({
 })
 local Tabs = {
     Main = Window:AddTab({ Title = "Tab Farming", Icon = "" }),
+    ITM = Window:AddTab({ Title = "Tab Items", Icon = "" }),
+    Setting = Window:AddTab({ Title = "Tab Setting", Icon = "" }),
+    Status = Window:AddTab({ Title = "Sever Status", Icon = "" }),
+    Stats = Window:AddTab({ Title = "Tab Stats", Icon = "" }),
     Sea = Window:AddTab({ Title = "Tab Sea Event", Icon = "" }),
-    ITM = Window:AddTab({ Title = "Tab Items", Icon = "sword" }),
-    Setting = Window:AddTab({ Title = "Tab Setting", Icon = "settings" }),
-    Status = Window:AddTab({ Title = "Sever Status", Icon = "user" }),
-    Stats = Window:AddTab({ Title = "Tab Stats", Icon = "plus-circle" }),
     Player = Window:AddTab({ Title = "Tab Player", Icon = "baby" }),
     Teleport = Window:AddTab({ Title = "Tab Teleport", Icon = "palmtree" }),
     Visual = Window:AddTab({ Title = "Tab Visual", Icon = "align-vertical-distribute-center" }),
@@ -3554,7 +3554,6 @@ end
 
 local Items = Tabs.ITM:AddSection("Items Farm")
 
-if Third_Sea then
     local ToggleHallow = Tabs.ITM:AddToggle("ToggleHallow", {Title = "Auto Hallow Scythe [Fully]",Description = "", Default = false })
 
     ToggleHallow:OnChanged(function(Value)
@@ -3691,10 +3690,8 @@ if Third_Sea then
                         end
                     end
                 end)
-            end
 
 
-if Second_Sea then
         local ToggleFactory = Tabs.ITM:AddToggle("ToggleFactory", {Title = "Auto Farm Factory",Description = "", Default = false })
         ToggleFactory:OnChanged(function(Value)
             _G.Factory = Value
@@ -3736,20 +3733,17 @@ if Second_Sea then
             end
         end)
 
-    end
    
 local ToggleKillPlayerTrial = Tabs.ITM:AddToggle("ToggleKillPlayerTrial", {Title = "Auto Cursed Dual Katana",Description = "", Default = false })
 ToggleKillPlayerTrial:OnChanged(function(Value)
     _G.KillAfterTrials = value
 end)
 
-        if Third_Sea then
     local ToggleCakeV2 = Tabs.ITM:AddToggle("ToggleCakeV2", {Title = "Auto Kill Dought King (Need Spawn)",Description = "", Default = false })
     ToggleCakeV2:OnChanged(function(Value)
         _G.AutoCakeV2 = Value
     end)
         Options.ToggleCakeV2:SetValue(false)
-end
     spawn(function()
         while wait() do
             if _G.AutoCakeV2 then
@@ -3787,8 +3781,7 @@ end
 
 
 
-    
-if Second_Sea or Third_Sea then
+
     local ToggleHakiColor = Tabs.ITM:AddToggle("ToggleHakiColor", {Title = "Auto Buy Haki Color",Description = "",Default = false })
     ToggleHakiColor:OnChanged(function(Value)
         _G.Auto_Buy_Enchancement = Value
@@ -3805,9 +3798,8 @@ if Second_Sea or Third_Sea then
                 end 
             end
         end)
-end
 
-if Second_Sea then
+
     local ToggleSwordLengend = Tabs.Main:AddToggle("ToggleSwordLengend", {Title = "Auto Buy Sword Lengendary",Description = "",Default = false })
     ToggleSwordLengend:OnChanged(function(Value)
         _G.BuyLengendSword = Value
@@ -3829,7 +3821,7 @@ if Second_Sea then
                 end)
             end
         end)
-    end
+
 
 
 
@@ -3905,7 +3897,7 @@ Camera:Stop()
                     if _G.BringMob and bringmob then
                         if v.Name == MonFarm and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
                             if v.Name == "Factory Staff" then
-                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 500 then
+                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 5000 then
                                     v.Head.CanCollide = false
                                     v.HumanoidRootPart.CanCollide = false
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)

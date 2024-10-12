@@ -1547,38 +1547,6 @@ end
 
 
 
-
-Tabs.home:AddButton({
-        Title = "Owner",
-        Description = "DuydepZaiiCuto!",
-        Callback = function()
-            setclipboard("")
-        end
-    })
-    
-Tabs.home:AddButton({
-        Title = "Version",
-        Description = "Beta Hub 6⁵",
-        Callback = function()
-            setclipboard("")
-        end
-    })
-    
-Tabs.home:AddButton({
-        Title = "Youtube",
-        Description = "Đăng Ký Kênh YouTube",
-        Callback = function()
-            setclipboard("https://www.youtube.com/@HIRU_HUB")
-        end
-    })
-    
-Tabs.home:AddButton({
-        Title = "Zalo Chat",
-        Description = "Hãy Tham Gia Zalo Thông Báo Update!",
-        Callback = function()
-            setclipboard("https://zalo.me/g/oiragq418")
-        end
-    })
     
 local listfastattack = {'0','0.2','0.15','0.20'}
 

@@ -1776,7 +1776,11 @@ spawn(function()
 end)
 end
 
-    
+    local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {Title = "Auto Near Mob", Default = false })
+    ToggleMobAura:OnChanged(function(Value)
+        _G.AutoNear = Value
+    end)
+    Options.ToggleMobAura:SetValue(false)
     spawn(function()
         while wait(.1) do
         if _G.AutoNear then
@@ -1806,7 +1810,7 @@ end
         end
         end
       end)
-
+    
 if Third_Sea then
     local ToggleCastleRaid = Tabs.Main:AddToggle("ToggleCastleRaid", {
         Title = "Auto Pirates Castle Raid",

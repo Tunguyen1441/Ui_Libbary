@@ -6713,3 +6713,14 @@ spawn(function()
     end
 end)
 end
+
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.AutoBone and _G.AutoLevel and  _G.Fast_Delay then
+             pcall(function()
+                game:GetService'VirtualUser':CaptureController()
+                game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
+            end)
+        end
+    end)
+end)

@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Mera Hub",
-    SubTitle = "Mm",
+    SubTitle = "",
     TabWidth = 160,
     Size = UDim2.fromOffset(600, 300),
     Acrylic = true,
@@ -1705,7 +1705,7 @@ end)
         end
         end)
         
-        
+if Third_Sea then
         local ToggleBone = Tabs.Main:AddToggle("ToggleBone", {Title = "Auto Farm Bone", Default = false })
 ToggleBone:OnChanged(function(Value)
     _G.AutoBone = Value
@@ -1774,13 +1774,9 @@ spawn(function()
         end
     end
 end)
-        
+end
 
-    local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {Title = "Auto Near Mob", Default = false })
-    ToggleMobAura:OnChanged(function(Value)
-        _G.AutoNear = Value
-    end)
-    Options.ToggleMobAura:SetValue(false)
+    
     spawn(function()
         while wait(.1) do
         if _G.AutoNear then
@@ -1811,7 +1807,7 @@ end)
         end
       end)
 
-
+if Third_Sea then
     local ToggleCastleRaid = Tabs.Main:AddToggle("ToggleCastleRaid", {
         Title = "Auto Pirates Castle Raid",
         Description = "", 
@@ -1849,7 +1845,7 @@ end)
             end
         end
         end)
-
+end
 
 
 

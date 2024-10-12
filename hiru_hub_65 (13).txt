@@ -4,15 +4,14 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Mera Hub",
-    SubTitle = "Version Beta 6⁵ | By Nguyen Vu Duy",
+    SubTitle = "",
     TabWidth = 160,
-    Size = UDim2.fromOffset(600, 320),
+    Size = UDim2.fromOffset(600, 300),
     Acrylic = true,
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
-    home = Window:AddTab({ Title = "Tab Info", Icon = "activity" }),
     Main = Window:AddTab({ Title = "Tab Farming", Icon = "" }),
     Sea = Window:AddTab({ Title = "Tab Sea Event", Icon = "" }),
     ITM = Window:AddTab({ Title = "Tab Items", Icon = "sword" }),
@@ -1656,29 +1655,21 @@ end)
     end)
     
     local Mastery = Tabs.Main:AddSection("Genaral")
-    local DropdownMastery = Tabs.Main:AddDropdown("DropdownMastery", {
-        Title = "Select Farm",
+    
+    
+    local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
+        Title = "Farm Level",
         Description = "",
-        Values = {"Farm Level","Farm Bone",},
-        Multi = false,
-        Default = 1,
-    })
-
-    DropdownMastery:SetValue("N/A")
-
-    DropdownMastery:OnChanged(function(Value)
-        TypeMastery = Value
-    end)
-
-    local ToggleMasteryFruit = Tabs.Main:AddToggle("ToggleMasteryFruit", {
-        Title = "Start Farm",
-        Description = "", 
         Default = false })
-    ToggleMasteryFruit:OnChanged(function(Value)
-        AutoFarmMasDevilFruit = Value
+    ToggleLevel:OnChanged(function(Value)
+        _G.AutoLevel = Value
+        if Value == false then
+            wait()
+            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
+        end
     end)
-
-
+    Options.ToggleLevel:SetValue(false)
     spawn(function()
         while task.wait() do
         if AutoFarmMasDevilFruit and TypeMastery == 'Level' then

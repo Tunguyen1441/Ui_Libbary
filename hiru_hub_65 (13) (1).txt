@@ -6,24 +6,24 @@ local Window = Fluent:CreateWindow({
     Title = "Mera Hub",
     SubTitle = "",
     TabWidth = 160,
-    Size = UDim2.fromOffset(600, 300),
+    Size = UDim2.fromOffset(600, 290),
     Acrylic = true,
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
-    Main = Window:AddTab({ Title = "Tab Farming", Icon = "" }),
-    ITM = Window:AddTab({ Title = "Tab Item", Icon = "" }),
-    Status = Window:AddTab({ Title = "Sever Status", Icon = "" }),
-    Stats = Window:AddTab({ Title = "Tab Stats", Icon = "" }),
-    Sea = Window:AddTab({ Title = "Tab Sea Event", Icon = "" }),
-    Player = Window:AddTab({ Title = "Tab Player", Icon = "baby" }),
-    Teleport = Window:AddTab({ Title = "Tab Teleport", Icon = "palmtree" }),
-    Visual = Window:AddTab({ Title = "Tab Visual", Icon = "align-vertical-distribute-center" }),
-    Fruit = Window:AddTab({ Title = "Tab Fruit Blox Esp", Icon = "apple" }),
-    Raid = Window:AddTab({ Title = "Tab Dungeon", Icon = "swords" }),
-    Race = Window:AddTab({ Title = "Tab Race V4", Icon = "clock" }),
-    Setting = Window:AddTab({ Title = "", Icon = "" }),
+    Status = Window:AddTab({ Title = "Status", Icon = "" }),
+    Main = Window:AddTab({ Title = "Farming", Icon = "" }),
+    ITM = Window:AddTab({ Title = "Item", Icon = "" }),
+    Stats = Window:AddTab({ Title = "Stats", Icon = "" }),
+    Sea = Window:AddTab({ Title = "Sea Event", Icon = "" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "" }),
+    Teleport = Window:AddTab({ Title = "Travel", Icon = "" }),
+    Visual = Window:AddTab({ Title = "Visual", Icon = "" }),
+    Fruit = Window:AddTab({ Title = "Fruits", Icon = "" }),
+    Raid = Window:AddTab({ Title = "Raid", Icon = "" }),
+    Race = Window:AddTab({ Title = "Race v4", Icon = "" }),
+    Setting = Window:AddTab({ Title = "Setting", Icon = "" }),
 }
 local Options = Fluent.Options
 do
@@ -1635,7 +1635,7 @@ end)
             end)
          
 
-    local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Bypass Tp", Description = "", Default = false })
+  local ToggleBypassTP = Tabs.Main:AddToggle("ToggleBypassTP", {Title = "Bypass Tp", Description = "", Default = false })
     ToggleBypassTP:OnChanged(function(Value)
         BypassTP = Value
     end)
@@ -1841,9 +1841,9 @@ spawn(function()
 end)
 end
 
-    local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {Title = "Auto Near Mob", Default = false })
+    local ToggleMobAura = Tabs.Settibg:AddToggle("ToggleMobAura", {Title = "Quest Farm", Default = true })
     ToggleMobAura:OnChanged(function(Value)
-        _G.AutoNear = Value
+        _G.AutoNeam = Value
     end)
     Options.ToggleMobAura:SetValue(false)
     spawn(function()
@@ -1876,9 +1876,8 @@ end
         end
       end)
     
-if Third_Sea then
-    local ToggleCastleRaid = Tabs.Main:AddToggle("ToggleCastleRaid", {
-        Title = "Auto Pirates Castle Raid",
+    local ToggleCastleRaid = Tabs.ITM:AddToggle("ToggleCastleRaid", {
+        Title = "Farm Castle Raid",
         Description = "", 
         Default = false })
     ToggleCastleRaid:OnChanged(function(Value)
@@ -1914,7 +1913,7 @@ if Third_Sea then
             end
         end
         end)
-end
+
 
 
 

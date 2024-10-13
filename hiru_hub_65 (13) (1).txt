@@ -3466,7 +3466,6 @@ local ToggleElite = Tabs.ITM:AddToggle("ToggleElite", {Title = "Farm Elite",Desc
                end
            end
        end)
-    end
 
 local ToggleCastleRaid = Tabs.ITM:AddToggle("ToggleCastleRaid", {
         Title = "Farm Castle Raid",

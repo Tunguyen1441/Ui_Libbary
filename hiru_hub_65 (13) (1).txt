@@ -1876,139 +1876,8 @@ end
         end
       end)
     
-    local ToggleCastleRaid = Tabs.ITM:AddToggle("ToggleCastleRaid", {
-        Title = "Farm Castle Raid",
-        Description = "", 
-        Default = false })
-    ToggleCastleRaid:OnChanged(function(Value)
-        _G.CastleRaid = Value
-    end)
-    Options.ToggleCastleRaid:SetValue(false)
-    spawn(function()
-        while wait() do
-            if _G.CastleRaid then
-                pcall(function()
-                    local CFrameCastleRaid = CFrame.new(-5496.17432, 313.768921, -2841.53027, 0.924894512, 7.37058015e-09, 0.380223751, 3.5881019e-08, 1, -1.06665446e-07, -0.380223751, 1.12297109e-07, 0.924894512)
-                    if (CFrame.new(-5539.3115234375, 313.800537109375, -2972.372314453125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if _G.CastleRaid and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 2000 then
-                                    repeat wait(_G.Fast_Delay)
-                                        AttackNoCoolDown()
-                                        AutoHaki()
-                                        EquipTool(SelectWeapon)
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                        Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
-                                    until v.Humanoid.Health <= 0 or not v.Parent or not _G.CastleRaid
-                                end
-                            end
-                        end
-                    else
-                        toTarget(CFrameCastleRaid)
-                     
-                      
-                    end
-                end)
-            end
-        end
-        end)
-
-
-
-
-local ToggleChestTween = Tabs.Main:AddToggle("ToggleChestTween", {
-    Title = "Auto Farm Chest[Tween]",
-    Description = "", 
-    Default = false })
-ToggleChestTween:OnChanged(function(Value)
-    AutoFarmChest = Value
-end)
-Options.ToggleChestTween:SetValue(false)
-_G.MagnitudeAdd = 0
-spawn(function()
-	while wait() do 
-		if AutoFarmChest then
-			for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
-				if v.Name:find("Chest") then
-					if game:GetService("Workspace"):FindFirstChild(v.Name) then
-						if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
-							repeat wait()
-								if game:GetService("Workspace"):FindFirstChild(v.Name) then
-									Tween(v.CFrame)
-								end
-							until AutoFarmChest == false or not v.Parent
-							Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-							_G.MagnitudeAdd = _G.MagnitudeAdd+1500
-							break
-						end
-					end
-				end
-			end
-		end
-	end
-end)
-
-Tabs.Main:AddButton({
-    Title = "Auto Chest Tp",
-    Description = "",
-    Callback = function()
-        _G.JoinTeam = "Pirates"
-        _G.Stop_If_Has_Items = true
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Chetspass/main/AutoChest.lua"))()
-    end
-})
-
-    Tabs.Main:AddButton({
-        Title = "Hiru Fps Booster",
-        Description = "",
-        Callback = function()
-            FPSBooster()
-        end
-    })
-
-    function FPSBooster()
-        local decalsyeeted = true
-        local g = game
-        local w = g.Workspace
-        local l = g.Lighting
-        local t = w.Terrain
-        sethiddenproperty(l,"Technology",2)
-        sethiddenproperty(t,"Decoration",false)
-        t.WaterWaveSize = 0
-        t.WaterWaveSpeed = 0
-        t.WaterReflectance = 0
-        t.WaterTransparency = 0
-        l.GlobalShadows = false
-        l.FogEnd = 9e9
-        l.Brightness = 0
-        settings().Rendering.QualityLevel = "Level01"
-        for i, v in pairs(g:GetDescendants()) do
-            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-                v.Material = "Plastic"
-                v.Reflectance = 0
-            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-                v.Transparency = 1
-            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                v.Lifetime = NumberRange.new(0)
-            elseif v:IsA("Explosion") then
-                v.BlastPressure = 1
-                v.BlastRadius = 1
-            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
-                v.Enabled = false
-            elseif v:IsA("MeshPart") then
-                v.Material = "Plastic"
-                v.Reflectance = 0
-                v.TextureID = 10385902758728957
-            end
-        end
-        for i, e in pairs(l:GetChildren()) do
-            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-                e.Enabled = false
-            end
-        end
-    end
     
+
 local ToggleSafeM = Tabs.Main:AddToggle("ToggleSafeM", {Title = "Auto Enable", Description = "", Default = true })
     ToggleMobAura:OnChanged(function(Value)
         _G.runwhenloworantiflag = Value
@@ -3617,6 +3486,44 @@ end)
 end
 
 local Items = Tabs.ITM:AddSection("Items Farm")
+
+local ToggleCastleRaid = Tabs.ITM:AddToggle("ToggleCastleRaid", {
+        Title = "Farm Castle Raid",
+        Description = "", 
+        Default = false })
+    ToggleCastleRaid:OnChanged(function(Value)
+        _G.CastleRaid = Value
+    end)
+    Options.ToggleCastleRaid:SetValue(false)
+    spawn(function()
+        while wait() do
+            if _G.CastleRaid then
+                pcall(function()
+                    local CFrameCastleRaid = CFrame.new(-5496.17432, 313.768921, -2841.53027, 0.924894512, 7.37058015e-09, 0.380223751, 3.5881019e-08, 1, -1.06665446e-07, -0.380223751, 1.12297109e-07, 0.924894512)
+                    if (CFrame.new(-5539.3115234375, 313.800537109375, -2972.372314453125).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 500 then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if _G.CastleRaid and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 2000 then
+                                    repeat wait(_G.Fast_Delay)
+                                        AttackNoCoolDown()
+                                        AutoHaki()
+                                        EquipTool(SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                        Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+                                    until v.Humanoid.Health <= 0 or not v.Parent or not _G.CastleRaid
+                                end
+                            end
+                        end
+                    else
+                        toTarget(CFrameCastleRaid)
+                     
+                      
+                    end
+                end)
+            end
+        end
+        end)
 
     local ToggleHallow = Tabs.ITM:AddToggle("ToggleHallow", {Title = "Auto Hallow Scythe [Fully]",Description = "", Default = false })
 

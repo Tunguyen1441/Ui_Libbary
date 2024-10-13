@@ -1841,7 +1841,7 @@ spawn(function()
 end)
 end
 
-    local ToggleMobAura = Tabs.Settibg:AddToggle("ToggleMobAura", {Title = "Quest Farm", Default = true })
+    local ToggleMobAura = Tabs.Setting:AddToggle("ToggleMobAura", {Title = "Quest Farm", Default = true })
     ToggleMobAura:OnChanged(function(Value)
         _G.AutoNeam = Value
     end)

@@ -693,7 +693,7 @@ function redzlib:MakeWindow(Configs)
 		BackgroundTransparency = 1,
 		Name = "Control Hub Size"
 	})), MakeDrag(Create("ImageButton", MainFrame, {
-		Size = UDim2.new(0, 53, 1, -30),
+		Size = UDim2.new(0, 53, 1, 53),
 		Position = UDim2.new(0, MainScroll.Size.X.Offset, 1, 0),
 		AnchorPoint = Vector2.new(0.5, 1),
 		Active = true,

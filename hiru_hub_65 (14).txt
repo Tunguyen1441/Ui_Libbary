@@ -1513,17 +1513,17 @@ function to(p)
 
 local ToggleFastAttack = Tabs.Main:AddToggle("ToggleFastAttack", {Title = "Fast Attack", Description = "", Default = true })
     ToggleFastAttack:OnChanged(function(Value)
-     _G.FastAttackFaiFao = Value
+     _G.Fast_Delay = Value
     end)
     Options.ToggleFastAttack:SetValue(true)
 
 spawn(function()
 	while wait() do
 		pcall(function()
-			if _G.FastAttackFaiFao then
+			if _G.Fast_Delay then
 				repeat wait(_G.Fast_Delay)
 					AttackNoCD()
-				until not _G.FastAttackFaiFao
+				until not _G.Fast_Delay
 			end
 		end)
 	end
@@ -1780,7 +1780,19 @@ spawn(function()
 end)
         
 
-  
+  local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
+        Title = "Kill Aura",
+        Description = "",
+        Default = false })
+    ToggleMobAura:OnChanged(function(Value)
+        _G.AutoNear = Value
+        if Value == false then
+            wait()
+            Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
+        end
+    end)
+    Options.ToggleMobAura:SetValue(false)
     spawn(function()
         while wait(.1) do
         if _G.AutoNear then

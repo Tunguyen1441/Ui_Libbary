@@ -12,12 +12,12 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.F15
 })
 local Tabs = {
-    Main = Window:AddTab({ Title = "Tab Farm", Icon = "home" }),
+    Status = Window:AddTab({ Title = "Status", Icon = "" }),
+    Main = Window:AddTab({ Title = "Farming", Icon = "" }),
     ITM = Window:AddTab({ Title = "Items", Icon = "" }),
     Sea = Window:AddTab({ Title = "Tab Sea Event", Icon = "" }),
     Race = Window:AddTab({ Title = "Mirage | Racev4", Icon = "" }),
-    Setting = Window:AddTab({ Title = "Tab Setting", Icon = "settings" }),
-    Status = Window:AddTab({ Title = "Sever Status", Icon = "user" }),
+    Setting = Window:AddTab({ Title = "Pos | Setting", Icon = "" }),
     Stats = Window:AddTab({ Title = "Tab Stats", Icon = "plus-circle" }),
     Player = Window:AddTab({ Title = "Tab Player", Icon = "baby" }),
     Teleport = Window:AddTab({ Title = "Tab Teleport", Icon = "palmtree" }),
@@ -1511,48 +1511,27 @@ function to(p)
 	end
 
 
-local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
-        Title = "Fast attack",
-        Description = "",
-        Default = true })
-    ToggleLevel:OnChanged(function(Value)
-        _G.FastAttack = Value
+local ToggleFastAttack = Tabs.Setting:AddToggle("ToggleFastAttack", {Title = "Enabled Fast Attack", Description = "", Default = true })
+    ToggleFastAttack:OnChanged(function(Value)
+     _G.FastAttackFaiFao = Value
     end)
-    Options.ToggleLevel:SetValue(true)
-local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
-CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
-y = debug.getupvalues(CombatFrameworkR)[2]
+    Options.ToggleFastAttack:SetValue(true)
+
 spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.FastAttack then
-            if typeof(y) == "table" then
-                pcall(function()
-                    CameraShaker:Stop()
-                    y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
-                    y.activeController.timeToNextAttack = 0
-                    y.activeController.hitboxMagnitude = 60
-                    y.activeController.active = false
-                    y.activeController.timeToNextBlock = 0
-                    y.activeController.focusStart = 1655503339.0980349
-                    y.activeController.increment = 1
-                    y.activeController.blocking = false
-                    y.activeController.attacking = false
-                    y.activeController.humanoid.AutoRotate = true
-                end)
-            end
-        end
-    end)
-end)
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.FastAttack == true then
-            game.Players.LocalPlayer.Character.Stun.Value = 0
-            game.Players.LocalPlayer.Character.Busy.Value = false        
-        end
-    end)
+	while wait() do
+		pcall(function()
+			if _G.FastAttackFaiFao then
+				repeat wait(_G.Fast_Delay)
+					AttackNoCD()
+				until not _G.FastAttackFaiFao
+			end
+		end)
+	end
 end)
 
-    _G.Fast_Delay = 0
+local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+Camera:Stop()
+-- local random_number = math.random(325, 335)
 
     local ToggleBringMob = Tabs.Main:AddToggle("ToggleBringMob", {Title = "Bring Mob",Description = "", Default = true })
     ToggleBringMob:OnChanged(function(Value)
@@ -1677,6 +1656,7 @@ ToggleAutoY:OnChanged(function(Value)
         end
     end)
 
+
     local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
         Title = "Farm Level",
         Description = "",
@@ -1736,6 +1716,69 @@ ToggleAutoY:OnChanged(function(Value)
         end
         end)
         
+        local ToggleBone = Tabs.Main:AddToggle("ToggleBone", {
+    Title = "Farm Bone",
+    Description = "", 
+    Default = false })
+ToggleBone:OnChanged(function(Value)
+    _G.AutoBone = Value
+    if Value == false then
+        wait()
+        Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+        wait()
+    end
+end)
+Options.ToggleBone:SetValue(false)
+local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
+local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
+spawn(function()
+    while wait() do
+        if _G.AutoBone then
+            pcall(function()
+                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                if not string.find(QuestTitle, "Demonic Soul") then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                end
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                 toTarget(BoneCFrame)
+                if (BoneCFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
+                    end
+                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
+                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
+                                        repeat wait(_G.Fast_Delay)
+                                            AttackNoCoolDown()
+                                            AutoHaki()
+                                            bringmob = true
+                                            EquipTool(SelectWeapon)
+                                            Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+			                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                            v.HumanoidRootPart.Transparency = 1
+                                            v.Humanoid.JumpPower = 0
+                                            v.Humanoid.WalkSpeed = 0
+                                            v.HumanoidRootPart.CanCollide = false
+                                            FarmPos = v.HumanoidRootPart.CFrame
+                                            MonFarm = v.Name
+                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                    else
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        bringmob = false
+                                    end
+                                end
+                            end
+                        end
+                    else
+                    end
+                end
+            end)
+        end
+    end
+end)
+        
 
     local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
         Title = "Quest",
@@ -1749,7 +1792,7 @@ ToggleAutoY:OnChanged(function(Value)
             wait()
         end
     end)
-    Options.ToggleMobAura:SetValue(false)
+    Options.ToggleMobAura:SetValue(true)
     spawn(function()
         while wait(.1) do
         if _G.AutoNear then
@@ -1822,100 +1865,6 @@ ToggleAutoY:OnChanged(function(Value)
         end
         end)
 
-
-
-
-local ToggleChestTween = Tabs.Main:AddToggle("ToggleChestTween", {
-    Title = "Auto Farm Chest[Tween]",
-    Description = "", 
-    Default = false })
-ToggleChestTween:OnChanged(function(Value)
-    AutoFarmChest = Value
-end)
-Options.ToggleChestTween:SetValue(false)
-_G.MagnitudeAdd = 0
-spawn(function()
-	while wait() do 
-		if AutoFarmChest then
-			for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
-				if v.Name:find("Chest") then
-					if game:GetService("Workspace"):FindFirstChild(v.Name) then
-						if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
-							repeat wait()
-								if game:GetService("Workspace"):FindFirstChild(v.Name) then
-									Tween(v.CFrame)
-								end
-							until AutoFarmChest == false or not v.Parent
-							Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-							_G.MagnitudeAdd = _G.MagnitudeAdd+1500
-							break
-						end
-					end
-				end
-			end
-		end
-	end
-end)
-
-Tabs.Main:AddButton({
-    Title = "Auto Chest Tp",
-    Description = "",
-    Callback = function()
-        _G.JoinTeam = "Pirates"
-        _G.Stop_If_Has_Items = true
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Chetspass/main/AutoChest.lua"))()
-    end
-})
-
-    Tabs.Main:AddButton({
-        Title = "Hiru Fps Booster",
-        Description = "",
-        Callback = function()
-            FPSBooster()
-        end
-    })
-
-    function FPSBooster()
-        local decalsyeeted = true
-        local g = game
-        local w = g.Workspace
-        local l = g.Lighting
-        local t = w.Terrain
-        sethiddenproperty(l,"Technology",2)
-        sethiddenproperty(t,"Decoration",false)
-        t.WaterWaveSize = 0
-        t.WaterWaveSpeed = 0
-        t.WaterReflectance = 0
-        t.WaterTransparency = 0
-        l.GlobalShadows = false
-        l.FogEnd = 9e9
-        l.Brightness = 0
-        settings().Rendering.QualityLevel = "Level01"
-        for i, v in pairs(g:GetDescendants()) do
-            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-                v.Material = "Plastic"
-                v.Reflectance = 0
-            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-                v.Transparency = 1
-            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                v.Lifetime = NumberRange.new(0)
-            elseif v:IsA("Explosion") then
-                v.BlastPressure = 1
-                v.BlastRadius = 1
-            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
-                v.Enabled = false
-            elseif v:IsA("MeshPart") then
-                v.Material = "Plastic"
-                v.Reflectance = 0
-                v.TextureID = 10385902758728957
-            end
-        end
-        for i, e in pairs(l:GetChildren()) do
-            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-                e.Enabled = false
-            end
-        end
-    end
     
 local ToggleSafeM = Tabs.Main:AddToggle("ToggleSafeM", {Title = "Auto Enable", Description = "", Default = true })
     ToggleMobAura:OnChanged(function(Value)
@@ -2143,69 +2092,6 @@ local StatusBone = Tabs.Main:AddParagraph({
 		end)
 	end)
 
-
-local ToggleBone = Tabs.Main:AddToggle("ToggleBone", {
-    Title = "Auto farm Bone",
-    Description = "", 
-    Default = false })
-ToggleBone:OnChanged(function(Value)
-    _G.AutoBone = Value
-    if Value == false then
-        wait()
-        Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-        wait()
-    end
-end)
-Options.ToggleBone:SetValue(false)
-local BoneCFrame = CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
-local BoneCFrame2 = CFrame.new(-9359.453125, 141.32679748535156, 5446.81982421875)
-spawn(function()
-    while wait() do
-        if _G.AutoBone then
-            pcall(function()
-                local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-                if not string.find(QuestTitle, "Demonic Soul") then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                end
-                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                 toTarget(BoneCFrame)
-                if (BoneCFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then    
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","HauntedQuest2",1)
-                    end
-                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
-                                    if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, "Demonic Soul") then
-                                        repeat wait(_G.Fast_Delay)
-                                            AttackNoCoolDown()
-                                            AutoHaki()
-                                            bringmob = true
-                                            EquipTool(SelectWeapon)
-                                            Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
-			                                v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                            v.HumanoidRootPart.Transparency = 1
-                                            v.Humanoid.JumpPower = 0
-                                            v.Humanoid.WalkSpeed = 0
-                                            v.HumanoidRootPart.CanCollide = false
-                                            FarmPos = v.HumanoidRootPart.CFrame
-                                            MonFarm = v.Name
-                                        until not _G.AutoBone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                                    else
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                        bringmob = false
-                                    end
-                                end
-                            end
-                        end
-                    else
-                    end
-                end
-            end)
-        end
-    end
-end)
 
 local ToggleRandomBone = Tabs.Main:AddToggle("ToggleRandomBone", {Title = "Auto Random Bone",Description = "", Default = false })
 ToggleRandomBone:OnChanged(function(Value)  
@@ -3803,29 +3689,6 @@ if Second_Sea then
         end)
     end
 
-
-
-local ToggleFastAttack = Tabs.Setting:AddToggle("ToggleFastAttack", {Title = "Enabled Fast Attack", Description = "", Default = true })
-    ToggleFastAttack:OnChanged(function(Value)
-     _G.FastAttackFaiFao = Value
-    end)
-    Options.ToggleFastAttack:SetValue(true)
-
-spawn(function()
-	while wait() do
-		pcall(function()
-			if _G.FastAttackFaiFao then
-				repeat wait(_G.Fast_Delay)
-					AttackNoCD()
-				until not _G.FastAttackFaiFao
-			end
-		end)
-	end
-end)
-
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-Camera:Stop()
--- local random_number = math.random(325, 335)
 
  local SliderPosX = Tabs.Setting:AddSlider("SliderPosX", {
     Title = "Pos X",

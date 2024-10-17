@@ -1528,10 +1528,10 @@ spawn(function()
             if typeof(y) == "table" then
                 pcall(function()
                     v.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-                       v.activeController.attacking = true
+                       v.activeController.attacking = false
                        v.activeController.increment = 4
                        v.activeController.blocking = false   
-                       v.activeController.hitboxMagnitude = 150
+                       v.activeController.hitboxMagnitude = 250
     		           v.activeController.humanoid.AutoRotate = true
     	               v.activeController.focusStart = 0
     	               v.activeController.currentAttackTrack = 0

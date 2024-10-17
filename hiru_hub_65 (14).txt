@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Blox Fruit | Mera Hub",
-    SubTitle = "by mibby",
+    SubTitle = "",
     TabWidth = 160,
     Size = UDim2.fromOffset(600, 290),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -1780,19 +1780,7 @@ spawn(function()
 end)
         
 
-    local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
-        Title = "Quest",
-        Description = "",
-        Default = true })
-    ToggleMobAura:OnChanged(function(Value)
-        _G.AutoNear = Value
-        if Value == false then
-            wait()
-            Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-            wait()
-        end
-    end)
-    Options.ToggleMobAura:SetValue(false)
+  
     spawn(function()
         while wait(.1) do
         if _G.AutoNear then

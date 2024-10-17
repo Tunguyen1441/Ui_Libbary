@@ -1511,7 +1511,7 @@ function to(p)
 	end
 
 
-local ToggleFastAttack = Tabs.Setting:AddToggle("ToggleFastAttack", {Title = "Enabled Fast Attack", Description = "", Default = true })
+local ToggleFastAttack = Tabs.Main:AddToggle("ToggleFastAttack", {Title = "Fast Attack", Description = "", Default = true })
     ToggleFastAttack:OnChanged(function(Value)
      _G.FastAttackFaiFao = Value
     end)
@@ -1792,7 +1792,7 @@ end)
             wait()
         end
     end)
-    Options.ToggleMobAura:SetValue(true)
+    Options.ToggleMobAura:SetValue(false)
     spawn(function()
         while wait(.1) do
         if _G.AutoNear then

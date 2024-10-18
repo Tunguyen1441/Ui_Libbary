@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Blox Fruit | Mera Hub",
-    SubTitle = "",
+    SubTitle = "5",
     TabWidth = 160,
     Size = UDim2.fromOffset(600, 290),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -1754,7 +1754,7 @@ ToggleAutoY:OnChanged(function(Value)
     while wait() do
         if AutoFarm and FarmStart == 'Farm Bone' then
             pcall(function()
-            CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
+            local FaiFaoQuestBone =  CFrame.new(-9515.75, 174.8521728515625, 6079.40625)
                 local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                 if not string.find(QuestTitle, "Demonic Soul") then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
@@ -1812,7 +1812,6 @@ ToggleAutoY:OnChanged(function(Value)
         end
     end
 end)
-        
 
   local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
         Title = "Kill Aura | Npc",
@@ -1820,12 +1819,6 @@ end)
         Default = false })
     ToggleMobAura:OnChanged(function(Value)
         KillAura = Value
-        _G.AutoNear = Value
-        if Value == false then
-            wait()
-            Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-            wait()
-        end
     end)
     Options.ToggleMobAura:SetValue(false)
     spawn(function()

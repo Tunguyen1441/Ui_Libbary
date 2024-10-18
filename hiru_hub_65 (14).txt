@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Blox Fruit | Mera Hub",
-    SubTitle = "5",
+    SubTitle = "9",
     TabWidth = 160,
     Size = UDim2.fromOffset(600, 290),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -1698,6 +1698,7 @@ ToggleAutoY:OnChanged(function(Value)
         Default = false })
     ToggleMasteryFruit:OnChanged(function(Value)
         AutoFarm = Value
+        AutoFarmBandit = Value
         if Value == false then
             wait()
             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -1724,7 +1725,7 @@ ToggleAutoY:OnChanged(function(Value)
           bringmob = true
           AutoHaki()
           EquipTool(SelectWeapon)
-          Tween(v.HumanoidRootPart.CFrame * CFrame.new(posX,posY,posZ))
+          Tween(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)
           v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
           v.HumanoidRootPart.Transparency = 1
           v.Humanoid.JumpPower = 0
@@ -1813,6 +1814,25 @@ ToggleAutoY:OnChanged(function(Value)
     end
 end)
 
+spawn(function()
+        pcall(function()
+            game:GetService("RunService").Stepped:Connect(function()
+                  if AutoFarmBandit then
+                     if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+                        local Noclip = Instance.new("BodyVelocity")
+                        Noclip.Name = "BodyClip"
+                        Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+                        Noclip.MaxForce = Vector3.new(100000,100000,100000)
+                        Noclip.Velocity = Vector3.new(0,0,0)
+                     end
+                  else	
+                      game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+                  end
+            end)
+        end)
+    end)
+    
+
   local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
         Title = "Kill Aura | Npc",
         Description = "",
@@ -1855,7 +1875,7 @@ end)
       end)
 
 
-    local ToggleCastleRaid = Tabs.Main:AddToggle("ToggleCastleRaid", {
+    local ToggleCastleRaid = Tabs.ITM:AddToggle("ToggleCastleRaid", {
         Title = "Auto Pirates Castle Raid",
         Description = "", 
         Default = false })

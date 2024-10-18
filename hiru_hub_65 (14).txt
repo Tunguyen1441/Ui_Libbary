@@ -1681,7 +1681,7 @@ ToggleAutoY:OnChanged(function(Value)
     local DropdownMastery = Tabs.Main:AddDropdown("DropdownMastery", {
         Title = "Slelet Farm",
         Description = "",
-        Values = {"Farm Level","Farm Bone",},
+        Values = {"Farm Level","Farm Bone"},
         Multi = false,
         Default = 1,
     })
@@ -1698,7 +1698,6 @@ ToggleAutoY:OnChanged(function(Value)
         Default = false })
     ToggleMasteryFruit:OnChanged(function(Value)
         AutoFarm = Value
-        AutoFarmBandit = Value
         if Value == false then
             wait()
             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
@@ -1813,25 +1812,6 @@ ToggleAutoY:OnChanged(function(Value)
         end
     end
 end)
-
-spawn(function()
-        pcall(function()
-            game:GetService("RunService").Stepped:Connect(function()
-                  if AutoFarmBandit then
-                     if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-                        local Noclip = Instance.new("BodyVelocity")
-                        Noclip.Name = "BodyClip"
-                        Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-                        Noclip.MaxForce = Vector3.new(100000,100000,100000)
-                        Noclip.Velocity = Vector3.new(0,0,0)
-                     end
-                  else	
-                      game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
-                  end
-            end)
-        end)
-    end)
-    
 
   local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
         Title = "Kill Aura | Npc",
@@ -5867,3 +5847,23 @@ spawn(function()
     end
 end)
 end
+
+spawn(function()
+        pcall(function()
+            game:GetService("RunService").Stepped:Connect(function()
+                  if AutoFarm then
+                     if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+                        local Noclip = Instance.new("BodyVelocity")
+                        Noclip.Name = "BodyClip"
+                        Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+                        Noclip.MaxForce = Vector3.new(100000,100000,100000)
+                        Noclip.Velocity = Vector3.new(0,0,0)
+                     end
+                  else	
+                      game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+                  end
+            end)
+        end)
+    end)
+    
+    

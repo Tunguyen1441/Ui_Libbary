@@ -1678,23 +1678,33 @@ ToggleAutoY:OnChanged(function(Value)
         end
     end)
 
-
-    local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
-        Title = "Farm Level",
+local Mastery = Tabs.Cc:AddSection("Mastery Farm")
+    local DropdownMastery = Tabs.Cc:AddDropdown("DropdownMastery", {
+        Title = "Slelet Farm",
         Description = "",
-        Default = false })
-    ToggleLevel:OnChanged(function(Value)
-        _G.AutoLevel = Value
-        if Value == false then
-            wait()
-            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-            wait()
-        end
+        Values = {"Farm Level","Farm Bone",},
+        Multi = false,
+        Default = 1,
+    })
+
+    DropdownMastery:SetValue("...")
+
+    DropdownMastery:OnChanged(function(Value)
+        FarmStart = Value
     end)
+
+    local ToggleMasteryFruit = Tabs.Main:AddToggle("ToggleMasteryFruit", {
+        Title = "Start Farm",
+        Description = "", 
+        Default = false })
+    ToggleMasteryFruit:OnChanged(function(Value)
+        AutoFarm = Value
+    end)
+    
     Options.ToggleLevel:SetValue(false)
     spawn(function()
         while task.wait() do
-        if _G.AutoLevel then
+        if AutoFarm and FarmStart == 'Farm Level' then
         pcall(function()
           CheckLevel()
           if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
@@ -1720,7 +1730,7 @@ ToggleAutoY:OnChanged(function(Value)
           v.HumanoidRootPart.CanCollide = false
           FarmPos = v.HumanoidRootPart.CFrame
           MonFarm = v.Name
-          until not _G.AutoLevel or not v.Parent or v.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false
+          until not AutoFarm or not v.Parent or v.Humanoid.Health == 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false or not game:GetService("Workspace").Enemies:FindFirstChild(v.Name) or not FarmStart == 'Farm Level'
           bringmob = false
         end   
           end
@@ -1803,16 +1813,11 @@ end)
         
 
   local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
-        Title = "Kill Aura",
+        Title = "Kill Aura | Npc",
         Description = "",
         Default = false })
     ToggleMobAura:OnChanged(function(Value)
-        _G.AutoNear = Value
-        if Value == false then
-            wait()
-            Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-            wait()
-        end
+        KillAura = Value
     end)
     Options.ToggleMobAura:SetValue(false)
     spawn(function()
@@ -1888,7 +1893,7 @@ end)
         end)
 
     
-local ToggleSafeM = Tabs.Main:AddToggle("ToggleSafeM", {Title = "Auto Enable", Description = "", Default = true })
+local ToggleSafeM = Tabs.Main:AddToggle("ToggleSafeM", {Title = "Appe Quest", Description = "", Default = true })
     ToggleMobAura:OnChanged(function(Value)
         _G.runwhenloworantiflag = Value
     end)

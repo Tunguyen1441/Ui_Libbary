@@ -1678,8 +1678,7 @@ ToggleAutoY:OnChanged(function(Value)
         end
     end)
 
-local Mastery = Tabs.Cc:AddSection("Mastery Farm")
-    local DropdownMastery = Tabs.Cc:AddDropdown("DropdownMastery", {
+    local DropdownMastery = Tabs.Main:AddDropdown("DropdownMastery", {
         Title = "Slelet Farm",
         Description = "",
         Values = {"Farm Level","Farm Bone",},

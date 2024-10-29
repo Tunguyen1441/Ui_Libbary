@@ -2491,43 +2491,49 @@ local SH = Window:MakeTab({
 })
 
 local W = Window:MakeTab({
-    Name = "Thông Tin",
+    Name = "Status",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 local M = Window:MakeTab({
     Name = "Tab Farming",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local ST = Window:MakeTab({
     Name = "Setting Farm",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local IQ = Window:MakeTab({
-    Name = "Vật phẩm",
+    Name = "Items",
+    Icon = "rbxassetid://",
+    PremiumOnly = false
+})
+
+local ZN = Window:MakeTab({
+    Name = "Sea Event",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 local S = Window:MakeTab({
-    Name = "chri số",
+    Name = "Stats",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 local E = Window:MakeTab({
-    Name = "định vị",
+    Name = "Visual",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 local RA = Window:MakeTab({
-    Name = "tập kích",
+    Name = "Dungeon",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -2539,7 +2545,7 @@ local LC = Window:MakeTab({
 })
 
 local Wld = Window:MakeTab({
-    Name = "di chuyển",
+    Name = "Tralve",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -2551,7 +2557,7 @@ local SV = Window:MakeTab({
 })
 
 local D = Window:MakeTab({
-    Name = "Trái Ác quỷ",
+    Name = "DS Fruit",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -2767,15 +2773,14 @@ spawn(function()
 end)
 
 local Section = M:AddSection({
-    Name = "Select Weapon"
+    Name = "Setting Farm"
 })
 
-M:AddParagraph("Select Weapon","Please Select Weapon")
 
 local WeaponList = {"Melee","Sword","Fruit","Gun"}
 _G.SelectWeapon = "Melee"
 M:AddDropdown({
-    Name = "Chọn vũ khí",
+    Name = "Slect Weapon",
     Default = "",
     Options = WeaponList,
     Flag = "Select Weapon",
@@ -2824,114 +2829,30 @@ task.spawn(function()
     end
     end)
 
-if World2 and World1 then
-    local Section = M:AddSection({
-        Name = "BOOTS"
-    })
+M:AddToggle({
+    Name = "Bring Mob",
+    Default = false,
+    Flag = "Bring Mobs",
+    Save = false,
+    Callback = function(Value)
+        _G.BringMonster = Value
+    end    
+})
 
-    M:AddButton({
-        Name = "Tăng FPS",
-        Callback = function()
-            pcall(function()
-                game:GetService("Lighting").FantasySky:Destroy()
-                local g = game
-                local w = g.Workspace
-                local l = g.Lighting
-                local t = w.Terrain
-                t.WaterWaveSize = 0
-                t.WaterWaveSpeed = 0
-                t.WaterReflectance = 0
-                t.WaterTransparency = 0
-                l.GlobalShadows = false
-                l.FogEnd = 9e9
-                l.Brightness = 0
-                settings().Rendering.QualityLevel = "Level01"
-                for i, v in pairs(g:GetDescendants()) do
-                    if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then 
-                        v.Material = "Plastic"
-                        v.Reflectance = 0
-                    elseif v:IsA("Decal") or v:IsA("Texture") then
-                        v.Transparency = 1
-                    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                        v.Lifetime = NumberRange.new(0)
-                    elseif v:IsA("Explosion") then
-                        v.BlastPressure = 1
-                        v.BlastRadius = 1
-                    elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
-                        v.Enabled = false
-                    elseif v:IsA("MeshPart") then
-                        v.Material = "Plastic"
-                        v.Reflectance = 0
-                        v.TextureID = 10385902758728957
-                    end
-                end
-                for i, e in pairs(l:GetChildren()) do
-                    if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-                        e.Enabled = false
-                    end
-                end
-                for i, v in pairs(game:GetService("Workspace").Camera:GetDescendants()) do
-                    if v.Name == ("Water;") then
-                        v.Transparency = 1
-                        v.Material = "Plastic"
-                    end
-                end
-            end)
-          end    
-    })
-end
+M:AddToggle({
+    Name = "Fast Attack",
+    Default = true,
+    Flag = "FastAttack",
+    Save = false,
+    Callback = function(Value)
+        _G.FastAttack = Value
+    end    
+})
+
+   
 
     local Section = M:AddSection({
-        Name = "Other Farm"
-    })
-
-    M:AddParagraph("Redeem Code","Click to Button to Reddem All Code In Blox Fruits.")
-
-    local x2Code = {
-        "JULYUPDATE_RESET",
-        "staffbattle",
-        "Sub2CaptainMaui",
-        "SUB2GAMERROBOT_RESET1",
-        "KittGaming",
-        "Sub2Fer999",
-        "Enyu_is_Pro",
-        "Magicbus",
-        "ENYU_IS_PRO",
-        "FUDD10",
-        "BIGNEWS",
-        "THEGREATACE",
-        "SUB2GAMERROBOT_EXP1",
-        "STRAWHATMAIME",
-        "SUB2OFFICIALNOOBIE",
-        "SUB2NOOBMASTER123",
-        "SUB2DAIGROCK",
-        "AXIORE",
-        "TANTAIGAMIMG",
-        "STRAWHATMAINE",
-        "JCWK",
-        "FUDD10_V2",
-        "SUB2FER999",
-        "MAGICBIS",
-        "TY_FOR_WATCHING",
-        "STARCODEHEO"
-    }
-    
-    
-    
-    M:AddButton({
-        Name = "nhập hết code",
-        Callback = function()
-            function RedeemCode(value)
-                game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(value)
-            end
-            for i,v in pairs(x2Code) do
-                RedeemCode(v)
-            end
-          end    
-    })
-
-    local Section = M:AddSection({
-        Name = "Tự động Farm Level"
+        Name = "Farming"
     })
 
 M:AddParagraph("Main Farm","")
@@ -3377,30 +3298,11 @@ M:AddToggle({
         Name = "Bring Mob"
     })
 
-M:AddToggle({
-    Name = "gom quái",
-    Default = true,
-    Flag = "Bring Mobs",
-    Save = false,
-    Callback = function(Value)
-        _G.BringMonster = Value
-    end    
-})
 
-_G.BringMode = 7500
+_G.BringMode = 1200
 
 local Section = M:AddSection({
     Name = "Fast Attack :"
-})
-
-M:AddToggle({
-    Name = "Fast Attack",
-    Default = true,
-    Flag = "FastAttack",
-    Save = false,
-    Callback = function(Value)
-        _G.FastAttack = Value
-    end    
 })
 local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
 CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
@@ -6219,7 +6121,51 @@ R:AddToggle({
     end
 })
 
-local Section = SH:AddSection({
+
+local x2Code = {
+        "JULYUPDATE_RESET",
+        "staffbattle",
+        "Sub2CaptainMaui",
+        "SUB2GAMERROBOT_RESET1",
+        "KittGaming",
+        "Sub2Fer999",
+        "Enyu_is_Pro",
+        "Magicbus",
+        "ENYU_IS_PRO",
+        "FUDD10",
+        "BIGNEWS",
+        "THEGREATACE",
+        "SUB2GAMERROBOT_EXP1",
+        "STRAWHATMAIME",
+        "SUB2OFFICIALNOOBIE",
+        "SUB2NOOBMASTER123",
+        "SUB2DAIGROCK",
+        "AXIORE",
+        "TANTAIGAMIMG",
+        "STRAWHATMAINE",
+        "JCWK",
+        "FUDD10_V2",
+        "SUB2FER999",
+        "MAGICBIS",
+        "TY_FOR_WATCHING",
+        "STARCODEHEO"
+    }
+    
+    
+    
+    SH:AddButton({
+        Name = "nhập hết code",
+        Callback = function()
+            function RedeemCode(value)
+                game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(value)
+            end
+            for i,v in pairs(x2Code) do
+                RedeemCode(v)
+            end
+          end    
+    })
+    
+    local Section = SH:AddSection({
     Name = "Melee"
 })
 
@@ -6335,7 +6281,7 @@ local Section = SH:AddSection({
 })
 
 SH:AddButton({
-    Name = "Mua tộc quỷ :",
+    Name = "Buy Race Goul",
     Callback = function()
         local a = {
             [1] = "Ectoplasm",
@@ -6353,7 +6299,7 @@ SH:AddButton({
 })
 
 SH:AddButton({
-    Name = "Mua tộc robot :",
+    Name = "Buy Race Cybong",
     Callback = function()
         local a = {
             [1] = "CyborgTrainer",

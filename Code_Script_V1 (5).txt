@@ -2516,49 +2516,49 @@ local IQ = Window:MakeTab({
 
 local ZN = Window:MakeTab({
     Name = "Sea Event",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local S = Window:MakeTab({
     Name = "Stats",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local E = Window:MakeTab({
     Name = "Visual",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local RA = Window:MakeTab({
     Name = "Dungeon",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local LC = Window:MakeTab({
     Name = "người chơi",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local Wld = Window:MakeTab({
     Name = "Tralve",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local SV = Window:MakeTab({
     Name = "Thông tin server",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
 local D = Window:MakeTab({
     Name = "DS Fruit",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
@@ -2571,7 +2571,7 @@ local R = Window:MakeTab({
 
 local C = Window:MakeTab({
     Name = "khác",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://",
     PremiumOnly = false
 })
 
@@ -2870,9 +2870,9 @@ ToggleFarm = M:AddToggle({
 
 
 
-M:AddParagraph("Kitsune✨","Kitsune Island")
+ZN:AddParagraph("Kitsune✨","Kitsune Island")
 
-local mr = M:AddLabel("")
+local mr = ZN:AddLabel("")
 
 task.spawn(function()
 	while task.wait() do
@@ -2891,8 +2891,8 @@ end)
 
 
 
-M:AddToggle({
-    Name = "đến đảo kitsune",
+ZN:AddToggle({
+    Name = "Teleport Kitsune ilands",
     Default = false,
     Flag = "KitsuneIslandTween",
     Save = true,
@@ -2923,8 +2923,8 @@ spawn(function()
     end
 end)
 
-M:AddToggle({
-    Name = "nhặt lửa",
+ZN:AddToggle({
+    Name = "Collect azure",
     Default = false,
     Flag = "AutoAzureAmber",
     Save = true,
@@ -2947,8 +2947,8 @@ spawn(function()
 end)
 
 
-M:AddToggle({
-    Name = "định vị đảo kitsune",
+ZN:AddToggle({
+    Name = "Esp Kitsune ilands,
     Default = false,
     Flag = "EspKitsune",
     Save = true,
@@ -2996,10 +2996,10 @@ function UpdateKitsune()
 	end
 end
 
-M:AddParagraph("Sea Event","")
+ZN:AddParagraph("Sea Event","")
 
-M:AddToggle({
-    Name = "Đánh TerrorShark",
+ZN:AddToggle({
+    Name = "Farm TerrorShark",
     Default = false,
     Flag = "Terrorshark",
     Save = true,
@@ -3009,8 +3009,8 @@ M:AddToggle({
     end    
 })
 
-M:AddToggle({
-    Name = "Đánh Shark",
+ZN:AddToggle({
+    Name = "Farm Shark",
     Default = false,
     Flag = "Shark",
     Save = true,
@@ -3057,8 +3057,8 @@ spawn(function()
     end
 end)
 
-M:AddToggle({
-    Name = "Đánh Piranha",
+ZN:AddToggle({
+    Name = "Farm Piranha",
     Default = false,
     Flag = "Piranha",
     Save = true,
@@ -3069,8 +3069,8 @@ M:AddToggle({
 })
 
 
-M:AddToggle({
-    Name = "Đánh Fish Crew",
+ZN:AddToggle({
+    Name = "Farm Fish Crew",
     Default = false,
     Flag = "FishCrew",
     Save = true,
@@ -3337,7 +3337,7 @@ spawn(function()
     end)
 end)
 
-    _G.FastAttackDelay = 0
+    _G.FastAttackDelay = 0.2
            
 local Section = M:AddSection({
     Name = "Bypass Teleport"

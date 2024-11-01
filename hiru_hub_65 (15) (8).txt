@@ -1837,7 +1837,7 @@ Tabs.Main:AddParagraph({
     local ToggleMobAura = Tabs.Setting:AddToggle("ToggleMobAura", {
         Title = "Anti kick",
         Description = "",
-        Default = true,
+        Default = true }}
     ToggleMobAura:OnChanged(function(Value)
         _G.AutoNear = Value
         if Value == false then

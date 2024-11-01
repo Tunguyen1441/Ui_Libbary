@@ -15,8 +15,9 @@ local Tabs = {
     home = Window:AddTab({ Title = "Discord", Icon = "" }),
     Main = Window:AddTab({ Title = "Framing", Icon = "" }),
     Man = Window:AddTab({ Title = "Farm Mastery", Icon = "" }),
-    Sea = Window:AddTab({ Title = "Tab Sea Event", Icon = "anchor" }),
-    ITM = Window:AddTab({ Title = "Tab Items", Icon = "sword" }),
+    Min = Window:AddTab({ Title = "Farm Boss", Icon = "" }),
+    Sea = Window:AddTab({ Title = "Sea Event", Icon = "" }),
+    ITM = Window:AddTab({ Title = "Tab Items", Icon = "" }),
     Setting = Window:AddTab({ Title = "Tab Setting", Icon = "settings" }),
     Status = Window:AddTab({ Title = "Sever Status", Icon = "user" }),
     Stats = Window:AddTab({ Title = "Tab Stats", Icon = "plus-circle" }),
@@ -1961,6 +1962,10 @@ local ToggleSafeM = Tabs.Main:AddToggle("ToggleSafeM", {Title = "Enable Quest Fa
 
 
 
+Tabs.Man:AddParagraph({
+        Title = "                ---------Mastery Farming----------         ",
+        Content = "                            "
+    }) 
 
     local DropdownMastery = Tabs.Man:AddDropdown("DropdownMastery", {
         Title = "Sllect Mob Farm",
@@ -2248,9 +2253,13 @@ spawn(function()
 	end)
 end
 if Third_Sea then
-local MiscFarm = Tabs.Main:AddSection("Katakuri Farm")
+Tabs.Main:AddParagraph({
+        Title = "                ---------Katakuri Farming----------         ",
+        Content = "                            "
+    }) 
+
 local Mob_Kill_Cake_Prince = Tabs.Main:AddParagraph({
-    Title = "Check Katakuri Spam",
+    Title = "Katakuri Status",
     Content = ""
 })
 
@@ -2272,7 +2281,7 @@ end)
 
 
 local ToggleCake = Tabs.Main:AddToggle("ToggleCake", {
-    Title = "Auto Farm Cake Prince",
+    Title = "Farm Cake",
     Description = "", 
     Default = false })
 ToggleCake:OnChanged(function(Value)
@@ -2337,7 +2346,7 @@ spawn(function()
 
 
     local ToggleSpawnCake = Tabs.Main:AddToggle("ToggleSpawnCake", {
-        Title = "Auto spam Katakuri",
+        Title = "Quest Spawn Katakuri",
         Description = "", 
         Default = true })
     ToggleSpawnCake:OnChanged(function(Value)
@@ -2413,8 +2422,12 @@ end
     end)
 end
 
-local boss = Tabs.Main:AddSection("Boss Farm")
 
+
+Tabs.Min:AddParagraph({
+        Title = "                ---------Boss Farming----------         ",
+        Content = "                            "
+    }) 
 
     if First_Sea then
 		tableBoss = {"The Gorilla King","Bobby","Yeti","Mob Leader","Vice Admiral","Warden","Chief Warden","Swan","Magma Admiral","Fishman Lord","Wysper","Thunder God","Cyborg","Saber Expert"}
@@ -2425,8 +2438,8 @@ local boss = Tabs.Main:AddSection("Boss Farm")
 	end
 
 
-    local DropdownBoss = Tabs.Main:AddDropdown("DropdownBoss", {
-        Title = "choose boss",
+    local DropdownBoss = Tabs.Min:AddDropdown("DropdownBoss", {
+        Title = "Select Boss",
         Description = "",
         Values = tableBoss,
         Multi = false,
@@ -2438,8 +2451,8 @@ local boss = Tabs.Main:AddSection("Boss Farm")
 		_G.SelectBoss = Value
     end)
 
-	local ToggleAutoFarmBoss = Tabs.Main:AddToggle("ToggleAutoFarmBoss", {
-        Title = "Auto Kill Boss",
+	local ToggleAutoFarmBoss = Tabs.Min:AddToggle("ToggleAutoFarmBoss", {
+        Title = "Farm Boss",
         Description = "", 
         Default = false })
 

@@ -1557,6 +1557,8 @@ local ToggleFast = Tabs.Main:AddToggle("MyToggle", {Title = "Fast Attack", Defau
         Fast = Value
         Duma = Value
     end)
+    
+    
     Options.ToggleBoneFast:SetValue(false)
 coroutine.wrap(function()
 local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()

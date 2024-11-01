@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Night Mera",
-    SubTitle = "",
+    SubTitle = "Hub",
     TabWidth = 160,
     Size = UDim2.fromOffset(520, 290),
     Acrylic = true,
@@ -1557,9 +1557,6 @@ local ToggleFast = Tabs.Main:AddToggle("MyToggle", {Title = "Fast Attack", Defau
         Fast = Value
         Duma = Value
     end)
-    
-    
-    Options.ToggleBoneFast:SetValue(false)
 coroutine.wrap(function()
 local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
     for v,v in pairs(getreg()) do

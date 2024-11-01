@@ -16,8 +16,10 @@ local Tabs = {
     Main = Window:AddTab({ Title = "Framing", Icon = "" }),
     Man = Window:AddTab({ Title = "Farm Mastery", Icon = "" }),
     Min = Window:AddTab({ Title = "Farm Boss", Icon = "" }),
-    Sea = Window:AddTab({ Title = "Sea Event", Icon = "" }),
-    ITM = Window:AddTab({ Title = "Tab Items", Icon = "" }),
+    Sea = Window:AddTab({ Title = "Farm Sea Event", Icon = "" }),
+    ITM = Window:AddTab({ Title = "Fram Items", Icon = "" }),
+    Mig = Window:AddTab({ Title = "Mirage", Icon = "" }),
+    Race = Window:AddTab({ Title = "Race v4", Icon = "" }),
     Setting = Window:AddTab({ Title = "Tab Setting", Icon = "settings" }),
     Status = Window:AddTab({ Title = "Sever Status", Icon = "user" }),
     Stats = Window:AddTab({ Title = "Tab Stats", Icon = "plus-circle" }),
@@ -26,7 +28,6 @@ local Tabs = {
     Visual = Window:AddTab({ Title = "Tab Visual", Icon = "align-vertical-distribute-center" }),
     Fruit = Window:AddTab({ Title = "Tab Fruit Blox Esp", Icon = "apple" }),
     Raid = Window:AddTab({ Title = "Tab Dungeon", Icon = "swords" }),
-    Race = Window:AddTab({ Title = "Tab Race V4", Icon = "clock" }),
     Shop = Window:AddTab({ Title = "Tab Shop", Icon = "shopping-cart" }),
 	Misc = Window:AddTab({ Title = "Tab Miscellaneous", Icon = "list-plus" }),
     Hop = Window:AddTab({ Title = "Tab Hop", Icon = "wifi" }),
@@ -2688,6 +2689,7 @@ spawn(function()
 end)
 end
 
+if Third_Sea then
 Tabs.Sea:AddButton({
         Title = "Trade Azure",
         Description = "",
@@ -2695,6 +2697,7 @@ Tabs.Sea:AddButton({
 game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Net"):WaitForChild("RF/KitsuneStatuePray"):InvokeServer()
  end
     })
+end
 
 if Third_Sea then
     local RoughSea = Tabs.Sea:AddSection("Rough Sea")
@@ -3165,10 +3168,14 @@ spawn(function()
 
 
 
-    local AutoElite = Tabs.Main:AddSection("Elite Hunter Farm")
+    Tabs.ITM:AddParagraph({
+        Title = "                ---------Elite----------         ",
+        Content = "                            "
+    }) 
+      
 
-    local StatusElite = Tabs.Main:AddParagraph({
-        Title = "Auto Check Elite Hunter Spam",
+    local StatusElite = Tabs.ITM:AddParagraph({
+        Title = "Status Elite",
         Content = "Status: "
     })
     
@@ -3184,7 +3191,7 @@ spawn(function()
         end
     end)
     
-    local ToggleElite = Tabs.Main:AddToggle("ToggleElite", {Title = "Auto kill Elite Hunter",Description = "", Default = false })
+    local ToggleElite = Tabs.ITM:AddToggle("ToggleElite", {Title = "Farm Elite Hunter",Description = "", Default = false })
 
     ToggleElite:OnChanged(function(Value)
        _G.AutoElite = Value
@@ -3375,9 +3382,13 @@ ToggleAutoW:OnChanged(function(Value)
 
 
 
-    local AutoMysticIsland = Tabs.Sea:AddSection("Mirage Island")
+    Tabs.Mig:AddParagraph({
+        Title = "                ---------Tab Mirage---------         ",
+        Content = "                            "
+    }) 
+      
 
-    local StatusMirage = Tabs.Sea:AddParagraph({
+    local StatusMirage = Tabs.Mig:AddParagraph({
         Title = "Status",
         Content = "Status:"
     })
@@ -3423,8 +3434,8 @@ ToggleAutoW:OnChanged(function(Value)
         end)
     end)
 
-    Tabs.Sea:AddButton({
-        Title = "Auto Tween to Mirage Island",
+    Tabs.Mig:AddButton({
+        Title = "Teleport Mirage Island",
         Description = "",
         Callback = function()
             TweenMirage()
@@ -3448,9 +3459,9 @@ ToggleAutoW:OnChanged(function(Value)
     end
 
 
-    Tabs.Sea:AddButton({
+    Tabs.Mig:AddButton({
         Title = "Tween to Highest Point",
-        Description = "",
+        Description = "bay đến chỗ cao nhất",
         Callback = function()
             TwenetoHighestPoint()
         end
@@ -3475,7 +3486,7 @@ ToggleAutoW:OnChanged(function(Value)
         end
     end
 
-local ToggleTweenGear = Tabs.Sea:AddToggle("ToggleTweenGear", {Title = "Tween To Gear",Description = "", Default = false })
+local ToggleTweenGear = Tabs.Mig:AddToggle("ToggleTweenGear", {Title = "Teleport To Gear",Description = "Lụm bánh răng", Default = false })
 ToggleTweenGear:OnChanged(function(Value)
     _G.TweenToGear = Value
 end) 
@@ -3502,7 +3513,7 @@ spawn(function()
 
 
 
-    local Togglelockmoon = Tabs.Sea:AddToggle("Togglelockmoon", {Title = "Lock Moon and Use Race Skill",Description = "", Default = false })
+    local Togglelockmoon = Tabs.Mig:AddToggle("Togglelockmoon", {Title = "Find Moon",Description = "", Default = false })
     Togglelockmoon:OnChanged(function(Value)
         _G.AutoLockMoon = Value
     end) 
@@ -3534,14 +3545,14 @@ spawn(function()
     end)
 
 
-local ToggleMirage = Tabs.Sea:AddToggle("ToggleMirage", {Title = "Auto hang Mirage Island",Description = "", Default = false })
+local ToggleMirage = Tabs.Mig:AddToggle("ToggleMirage", {Title = "Auto hang Mirage Island",Description = "", Default = false })
 ToggleMirage:OnChanged(function(Value)
  _G.AutoSeaBeast = Value
 end) 
 
  Options.ToggleMirage:SetValue(false)
 
- local AutoW = Tabs.Sea:AddToggle("AutoW", {Title = "Auto Press W",Description = "", Default = false })
+ local AutoW = Tabs.Mig:AddToggle("AutoW", {Title = "Auto Press W",Description = "", Default = false })
  AutoW:OnChanged(function(Value)
     _G.AutoW = Value
      end)
@@ -3557,7 +3568,10 @@ end)
     end)
 end
 
-local Items = Tabs.ITM:AddSection("Items Farm")
+Tabs.ITM:AddParagraph({
+        Title = "                ---------Tab Item----------         ",
+        Content = "                            "
+    }) 
 
 if Third_Sea then
     local ToggleHallow = Tabs.ITM:AddToggle("ToggleHallow", {Title = "Auto Hallow Scythe [Fully]",Description = "", Default = false })

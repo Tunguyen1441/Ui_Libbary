@@ -18,7 +18,7 @@ local Tabs = {
     ITM = Window:AddTab({ Title = "Tab Items", Icon = "" }),
     Setting = Window:AddTab({ Title = "Tab Setting", Icon = "" }),
     Status = Window:AddTab({ Title = "Sever Status", Icon = "" }),
-    Stats = Window:AddTab({ Title = "Tab Stats", Icon = "plus-circle" }),
+    Stats = Window:AddTab({ Title = "Tab Stats", Icon = "" }),
     Player = Window:AddTab({ Title = "Tab Player", Icon = "baby" }),
     Teleport = Window:AddTab({ Title = "Tab Teleport", Icon = "palmtree" }),
     Visual = Window:AddTab({ Title = "Tab Visual", Icon = "align-vertical-distribute-center" }),
@@ -1651,12 +1651,7 @@ local ToggleBringMob = Tabs.Main:AddToggle("ToggleBringMob", {Title = "Bring Mob
                 end
             end)
             
- Tabs.Main:AddParagraph({
-        Title = "                ---------Weapon Farm---------         ",
-        Content = "                            "
-    })
-    
-            
+
 local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
         Title = "Slecet Weapon",
         Description = "Chọn weapon",

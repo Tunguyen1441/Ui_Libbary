@@ -1551,13 +1551,13 @@ Tabs.Main:AddParagraph({
     })
 
    
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Fast Attack", Default = true })
+local ToggleFast = Tabs.Main:AddToggle("MyToggle", {Title = "Fast Attack", Default = true })
 
     Toggle:OnChanged(function(Value)
         Fast = Value
         Duma = Value
     end)
-    
+    Options.ToggleBoneFast:SetValue(false)
 coroutine.wrap(function()
 local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
     for v,v in pairs(getreg()) do
@@ -1592,7 +1592,7 @@ spawn(function()
         if Duma then
              pcall(function()
                 game:GetService'VirtualUser':CaptureController()
-			    game:GetService'VirtualUser':Button1Down(Vector2.new(0,0,0,0))
+			    game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
             end)
         end
     end)
@@ -1651,8 +1651,13 @@ local ToggleBringMob = Tabs.Main:AddToggle("ToggleBringMob", {Title = "Bring Mob
                 end
             end)
             
-
-local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
+    
+Tabs.Main:AddParagraph({
+        Title = "                ---------Farming---------         ",
+        Content = "                            "
+    })
+    
+    local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
         Title = "Slecet Weapon",
         Description = "Chọn weapon",
         Values = {'Melee','Sword','Blox Fruit'},
@@ -1702,11 +1707,6 @@ local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
             end)
         end
     end)
-    
-Tabs.Main:AddParagraph({
-        Title = "                ---------Farming---------         ",
-        Content = "                            "
-    })
 
     
     
@@ -1772,11 +1772,11 @@ Tabs.Main:AddParagraph({
   
 
     local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
-        Title = "Auto Kill Near Mob Aura",
+        Title = "Farm Bone",
         Description = "",
         Default = false })
     ToggleMobAura:OnChanged(function(Value)
-        _G.AutoNear = Value
+        _G.AutoBone = Value
         if Value == false then
             wait()
             Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)

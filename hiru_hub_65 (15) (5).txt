@@ -1723,7 +1723,7 @@ Tabs.Main:AddParagraph({
         Farm = Value
     end)
 
-    local ToggleMasteryFruit = Tabs.Cc:AddToggle("ToggleMasteryFruit", {
+    local ToggleMasteryFruit = Tabs.Main:AddToggle("ToggleMasteryFruit", {
         Title = "Start Farm",
         Description = "", 
         Default = false })

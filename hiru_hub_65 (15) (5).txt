@@ -1709,7 +1709,7 @@ Tabs.Main:AddParagraph({
         end
     end)
     
- 
+  
 
     local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
         Title = "Auto Kill Near Mob Aura",

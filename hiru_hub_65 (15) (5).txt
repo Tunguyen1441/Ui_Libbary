@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
     Title = "Night Mera",
-    SubTitle = "Hub",
+    SubTitle = "",
     TabWidth = 160,
     Size = UDim2.fromOffset(520, 290),
     Acrylic = true,
@@ -1554,7 +1554,7 @@ Tabs.Main:AddParagraph({
 local ToggleFast = Tabs.Main:AddToggle("MyToggle", {Title = "Fast Attack", Default = true })
 
     Toggle:OnChanged(function(Value)
-        Fast = Value
+        Vtool = Value
         Duma = Value
     end)
 coroutine.wrap(function()
@@ -1652,7 +1652,7 @@ local ToggleBringMob = Tabs.Main:AddToggle("ToggleBringMob", {Title = "Bring Mob
             
     
 Tabs.Main:AddParagraph({
-        Title = "                ---------Farming---------         ",
+        Title = "                ---------Weapon---------         ",
         Content = "                            "
     })
     
@@ -1706,6 +1706,11 @@ Tabs.Main:AddParagraph({
             end)
         end
     end)
+    
+    Tabs.Main:AddParagraph({
+        Title = "                ---------Farming---------         ",
+        Content = "                            "
+    })
 
     
     
@@ -1775,7 +1780,7 @@ Tabs.Main:AddParagraph({
         Description = "",
         Default = false })
     ToggleMobAura:OnChanged(function(Value)
-        _G.AutoBone = Value
+        _G.AutoNear = Value
         if Value == false then
             wait()
             Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)

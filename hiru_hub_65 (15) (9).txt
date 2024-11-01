@@ -26,11 +26,9 @@ local Tabs = {
     Stats = Window:AddTab({ Title = "Upgrade Stats", Icon = "" }),
     Player = Window:AddTab({ Title = "Pvp/Player", Icon = "" }),
     Teleport = Window:AddTab({ Title = "Travel", Icon = "" }),
-    Visual = Window:AddTab({ Title = "Tab Visual", Icon = "align-vertical-distribute-center" }),
-    Fruit = Window:AddTab({ Title = "Tab Fruit Blox Esp", Icon = "apple" }),
+    Visual = Window:AddTab({ Title = "Visual", Icon = "" }),
+    Fruit = Window:AddTab({ Title = "Fruit", Icon = "" }),
     Raid = Window:AddTab({ Title = "Dungeon", Icon = "" }),
-	Misc = Window:AddTab({ Title = "Tab Miscellaneous", Icon = "list-plus" }),
-    Hop = Window:AddTab({ Title = "Tab Hop", Icon = "wifi" }),
 }
 local Options = Fluent.Options
 do
@@ -1549,44 +1547,24 @@ end
 
 
 
-
+game.StarterGui:SetCore("SendNotification", {
+                            Title = "Nightmera Hub", 
+                            Text = "Wecom" ,
+                            Icon = "rbxassetid://",
+                            Duration = 7
+                        })
 
 
 Tabs.home:AddButton({
-        Title = "Owner",
-        Description = "DuydepZaiiCuto!",
+        Title = "No link",
+        Description = "",
         Callback = function()
             setclipboard("")
         end
     })
     
-Tabs.home:AddButton({
-        Title = "Version",
-        Description = "Beta Hub 6⁵",
-        Callback = function()
-            setclipboard("")
-        end
-    })
-    
-Tabs.home:AddButton({
-        Title = "Youtube",
-        Description = "Đăng Ký Kênh YouTube",
-        Callback = function()
-            setclipboard("https://www.youtube.com/@HIRU_HUB")
-        end
-    })
-    
-Tabs.home:AddButton({
-        Title = "Zalo Chat",
-        Description = "Hãy Tham Gia Zalo Thông Báo Update!",
-        Callback = function()
-            setclipboard("https://zalo.me/g/oiragq418")
-        end
-    })
-    
-    
-    Tabs.Main:AddParagraph({
-        Title = "                ---------Fast Attack----------         ",
+Tabs.Main:AddParagraph({
+        Title = "                ---------Setting----------         ",
         Content = "                            "
     }) 
     
@@ -2372,10 +2350,14 @@ spawn(function()
   end
 end)
 end
-    if Second_Sea then
-	local MiscFarm = Tabs.Main:AddSection("Ectoplasm Farm")
+
+    Tabs.Main:AddParagraph({
+        Title = "                ---------Ectoplasm Farm----------         ",
+        Content = "                            "
+    }) 
+	
     local ToggleVatChatKiDi = Tabs.Main:AddToggle("ToggleVatChatKiDi", {
-        Title = "Auto Farm Ectoplasm",
+        Title = "Farm Ectoplasm",
         Description = "", 
         Default = false })
     ToggleVatChatKiDi:OnChanged(function(Value)
@@ -2421,7 +2403,6 @@ end
             end)
         end
     end)
-end
 
 
 
@@ -5078,7 +5059,7 @@ DropdownFruit:OnChanged(function(Value)
 end)
 
 
-local ToggleFruit = Tabs.Fruit:AddToggle("ToggleFruit", {Title = "Auto Buy Fruit Sniper",Description = "", Default = false })
+local ToggleFruit = Tabs.Fruit:AddToggle("ToggleFruit", {Title = "Buy Fruit Sniper",Description = "", Default = false })
 ToggleFruit:OnChanged(function(Value)
     _G.AutoBuyFruitSniper = Value
 end)
@@ -5095,7 +5076,7 @@ spawn(function()
 end)
 
 
-local ToggleStore = Tabs.Fruit:AddToggle("ToggleStore", {Title = "Auto Store Fruit",Description = "", Default = false })
+local ToggleStore = Tabs.Fruit:AddToggle("ToggleStore", {Title = "Store Fruit",Description = "", Default = true })
 ToggleStore:OnChanged(function(Value)
     _G.AutoStoreFruit = Value
 end)
@@ -5218,7 +5199,7 @@ spawn(function()
 
 
 
-local ToggleRandomFruit = Tabs.Fruit:AddToggle("ToggleRandomFruit", {Title = "Auto Random Fruit",Description = "", Default = false })
+local ToggleRandomFruit = Tabs.Fruit:AddToggle("ToggleRandomFruit", {Title = "Random Fruit",Description = "", Default = false })
 ToggleRandomFruit:OnChanged(function(Value)
     _G.Random_Auto = Value
 end)
@@ -5233,7 +5214,7 @@ spawn(function()
     end)
 end)
 
-local ToggleCollectTP = Tabs.Fruit:AddToggle("ToggleCollectTP", {Title = "TP Collect Devil Fruit Spam",Description = "", Default = false })
+local ToggleCollectTP = Tabs.Fruit:AddToggle("ToggleCollectTP", {Title = "Collect Fruit",Description = "lụm trái", Default = false })
 ToggleCollectTP:OnChanged(function(Value)
     _G.CollectFruitTP = Value
 end)

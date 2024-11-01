@@ -12,6 +12,8 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.End
 })
 local Tabs = {
+     Status = Window:AddTab({ Title = "Status", Icon = "" }),
+     Shop = Window:AddTab({ Title = "Tab Shop", Icon = "" }),
     home = Window:AddTab({ Title = "Discord", Icon = "" }),
     Main = Window:AddTab({ Title = "Framing", Icon = "" }),
     Man = Window:AddTab({ Title = "Farm Mastery", Icon = "" }),
@@ -20,15 +22,13 @@ local Tabs = {
     ITM = Window:AddTab({ Title = "Fram Items", Icon = "" }),
     Mig = Window:AddTab({ Title = "Mirage", Icon = "" }),
     Race = Window:AddTab({ Title = "Race v4", Icon = "" }),
-    Setting = Window:AddTab({ Title = "Tab Setting", Icon = "settings" }),
-    Status = Window:AddTab({ Title = "Sever Status", Icon = "user" }),
-    Stats = Window:AddTab({ Title = "Tab Stats", Icon = "plus-circle" }),
-    Player = Window:AddTab({ Title = "Tab Player", Icon = "baby" }),
-    Teleport = Window:AddTab({ Title = "Tab Teleport", Icon = "palmtree" }),
+    Setting = Window:AddTab({ Title = "Tab Setting", Icon = "" }),
+    Stats = Window:AddTab({ Title = "Upgrade Stats", Icon = "" }),
+    Player = Window:AddTab({ Title = "Pvp/Player", Icon = "" }),
+    Teleport = Window:AddTab({ Title = "Travel", Icon = "" }),
     Visual = Window:AddTab({ Title = "Tab Visual", Icon = "align-vertical-distribute-center" }),
     Fruit = Window:AddTab({ Title = "Tab Fruit Blox Esp", Icon = "apple" }),
-    Raid = Window:AddTab({ Title = "Tab Dungeon", Icon = "swords" }),
-    Shop = Window:AddTab({ Title = "Tab Shop", Icon = "shopping-cart" }),
+    Raid = Window:AddTab({ Title = "Dungeon", Icon = "" }),
 	Misc = Window:AddTab({ Title = "Tab Miscellaneous", Icon = "list-plus" }),
     Hop = Window:AddTab({ Title = "Tab Hop", Icon = "wifi" }),
 }
@@ -1095,12 +1095,12 @@ end
     local Distance = (RealTarget.Position - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position)
         .Magnitude
     if Distance < 1000 then
-        Speed = 315
+        Speed = 350
     elseif Distance >= 1000 then
-        Speed = 300
+        Speed = 350
     end
     if BypassTP then
-        if Distance > 3000 and not AutoNextIsland and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
+        if Distance > 5232 and not AutoNextIsland and not (game.Players.LocalPlayer.Backpack:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Character:FindFirstChild("Special Microchip") or game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Hallow Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Sweet Chalice") or game.Players.LocalPlayer.Backpack:FindFirstChild("Sweet Chalice")) and not (Name == "Fishman Commando" or Name == "Fishman Warrior") then
             pcall(function()
                 tween:Cancel()
                 fkwarp = false
@@ -1153,7 +1153,7 @@ end
 
 
 
-  TweenSpeed = 340
+  TweenSpeed = 350
    function Tween(P1)
     local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     if Distance >= 1 then
@@ -3574,7 +3574,7 @@ Tabs.ITM:AddParagraph({
     }) 
 
 if Third_Sea then
-    local ToggleHallow = Tabs.ITM:AddToggle("ToggleHallow", {Title = "Auto Hallow Scythe [Fully]",Description = "", Default = false })
+    local ToggleHallow = Tabs.ITM:AddToggle("ToggleHallow", {Title = "Auto Hallow Scythe",Description = "", Default = false })
 
     ToggleHallow:OnChanged(function(Value)
         AutoHallowSycthe = Value
@@ -4470,178 +4470,6 @@ ToggleQuanSat:OnChanged(function(Value)
     game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
 end)
 Options.ToggleQuanSat:SetValue(false)
-
-
-
-
-
-
-local ToggleFastAttack = Tabs.Player:AddToggle("ToggleFastAttack", {Title = " Click Attack Player",Description = "", Default = false })
-
-ToggleFastAttack:OnChanged(function(Value)
- _G.FastAttackWinterhub = Value
-end)
-Options.ToggleFastAttack:SetValue(false)
-
-
-
-local SliderDelayAttackPlayer = Tabs.Player:AddSlider("SliderDelayAttackPlayer", {
-    Title = "Delay Fast (sec)",
-    Description = "",
-    Default = 0.1,
-    Min = 0,
-    Max = 5,
-    Rounding = 1,
-    Callback = function(Value)
-       _G.DelayAttackPlayer = Value
-    end
-})
-
-SliderDelayAttackPlayer:OnChanged(function(Value)
-   _G.DelayAttackPlayer = Value
-end)
-
-SliderDelayAttackPlayer:SetValue(0.1)
-
-spawn(function()
-while wait() do
-    pcall(function()
-        if _G.FastAttackWinterhub then
-            repeat wait(_G.DelayAttackPlayer)
-               AttackNoCoolDown()
-            until not _G.FastAttackWinterhub
-        end
-    end)
-end
-end)
-local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
-Camera:Stop()
-
-
-function getAllBladeHitsPlayers(Sizes)
-	local Hits = {}
-	local Client = game.Players.LocalPlayer
-	local Characters = game:GetService("Workspace").Characters:GetChildren()
-	for i=1,#Characters do local v = Characters[i]
-		local Human = v:FindFirstChildOfClass("Humanoid")
-		if v.Name ~= game.Players.LocalPlayer.Name and Human and Human.RootPart and Human.Health > 0 and Client:DistanceFromCharacter(Human.RootPart.Position) < Sizes+5 then
-			table.insert(Hits,Human.RootPart)
-		end
-	end
-	return Hits
-end
-
-function getAllBladeHits(Sizes)
-	local Hits = {}
-	local Client = game.Players.LocalPlayer
-	local Enemies = game:GetService("Workspace").Enemies:GetChildren()
-	for i=1,#Enemies do local v = Enemies[i]
-		local Human = v:FindFirstChildOfClass("Humanoid")
-		if Human and Human.RootPart and Human.Health > 0 and Client:DistanceFromCharacter(Human.RootPart.Position) < Sizes+5 then
-			table.insert(Hits,Human.RootPart)
-		end
-	end
-	return Hits
-end
-
-local Teleport = Tabs.Player:AddSection("Combat")
-
-
-local SlidershowFov = Tabs.Player:AddSlider("SlidershowFov", {
-    Title = "Size Fov",
-    Description = "",
-    Default = 100,
-    Min = 0,
-    Max = 500,
-    Rounding = 1,
-    Callback = function(Value)
-        _G.Select_Size_Fov = Value
-    end
-})
-
-SlidershowFov:OnChanged(function(Value)
-    _G.Select_Size_Fov = Value
-end)
-SlidershowFov:SetValue(100)
-
-
-local ToggleShowFov = Tabs.Player:AddToggle("ToggleShowFov", {Title = "Show Fov",Description = "", Default = false })
-ToggleShowFov:OnChanged(function(value)
-    _G.Show_Fov = value
-end)
-Options.ToggleShowFov:SetValue(false)
-
-
-local ToggleAimBotSkill = Tabs.Player:AddToggle("ToggleAimBotSkill", {Title = "Auto Aimbot Skill",Description = "", Default = false })
-ToggleAimBotSkill:OnChanged(function(Value)
-    _G.Aimbot_Skill_Fov = Value
-end)
-Options.ToggleAimBotSkill:SetValue(false)
-local lp = game:GetService('Players').LocalPlayer
-local mouse = lp:GetMouse()
-spawn(function()
-	while wait() do
-		if _G.Aimbot_Skill_Fov then
-			pcall(function()
-				local MaxDist, Closest = math.huge
-				for i,v in pairs(game:GetService("Players"):GetChildren()) do 
-					local Head = v.Character:FindFirstChild("HumanoidRootPart")
-					local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera, Head.Position)
-					local MousePos, TheirPos = Vector2.new(mouse.X, mouse.Y), Vector2.new(Pos.X, Pos.Y)
-					local Dist = (TheirPos - MousePos).Magnitude
-					if Dist < MaxDist and Dist <= _G.Select_Size_Fov and v.Name ~= game.Players.LocalPlayer.Name then
-						MaxDist = Dist
-						_G.Aim_Players = v
-					end
-				end
-			end)
-		end
-	end
-end)
-spawn(function()
-	local gg = getrawmetatable(game)
-	local old = gg.__namecall
-	setreadonly(gg,false)
-	gg.__namecall = newcclosure(function(...)
-		local method = getnamecallmethod()
-		local args = {...}
-		if tostring(method) == "FireServer" then
-			if tostring(args[1]) == "RemoteEvent" then
-				if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
-					if _G.Aimbot_Skill_Fov then
-						args[2] = _G.Aim_Players.Character.HumanoidRootPart.Position
-						return old(unpack(args))
-					end
-				end
-			end
-		end
-		return old(...)
-	end)
-end)
-
-
-local Circle = Drawing.new("Circle")
-Circle.Color =  Color3.fromRGB(0, 244, 0)
-Circle.Thickness = 1
-Circle.Radius = 250
-Circle.NumSides = 460
-Circle.Filled = false
-Circle.Transparency = 1
-
-game:GetService("RunService").Stepped:Connect(function()
-    Circle.Radius = _G.Select_Size_Fov
-    Circle.Thickness = 1
-    Circle.NumSides = 460
-    Circle.Position = game:GetService('UserInputService'):GetMouseLocation()
-    if _G.Show_Fov then
-        Circle.Visible = true
-    else
-        Circle.Visible = false
-    end
-end)
-
-
-
 
 
 local Mastery = Tabs.Player:AddSection("Misc")

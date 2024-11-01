@@ -1550,9 +1550,7 @@ Tabs.Main:AddParagraph({
         Content = "                            "
     })
 
-    
-
-
+   
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Fast Attack", Default = true })
 
     Toggle:OnChanged(function(Value)
@@ -1709,16 +1707,6 @@ local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
             end)
         end
     end)
-    
-    local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
-        Title = "Slecet Fast attack",
-        Description = "",
-        Values = {'Fast Antikick'},
-        Multi = false,
-        Default = 1,
-    })
-         
-
     
 Tabs.Main:AddParagraph({
         Title = "                ---------Farming---------         ",

@@ -1581,87 +1581,6 @@ Tabs.home:AddButton({
         end
     })
     
-local listfastattack = {'0.01','0.05','0.015','0.001','0.1','0.005','0','0.02'}
-
-    local DropdownDelayAttack = Tabs.Main:AddDropdown("DropdownDelayAttack", {
-        Title = "Select Fast Attack",
-        Description = "",
-        Values = listfastattack,
-        Multi = false,
-        Default = 1,
-    })
-    DropdownDelayAttack:SetValue("0.05")
-    DropdownDelayAttack:OnChanged(function(Value)
-    _G.m1m_Mode = Value
-	if _G.m1m_Mode == "0.1" then
-		_G.Fast_Delay = 0.1
-    elseif _G.m1m_Mode == "0.05" then
-		_G.Fast_Delay = 0.05
-	elseif _G.m1m_Mode == "0.005" then
-        _G.Fast_Delay = 0.005
-    elseif _G.m1m_Mode == "0.001" then
-		_G.Fast_Delay = 0.001
-    elseif _G.m1m_Mode == "0" then
-		_G.Fast_Delay = 0
-    elseif _G.m1m_Mode == "0.01" then
-        _G.Fast_Delay = 0.01
-    elseif _G.m1m_Mode == "0.015" then
-        _G.Fast_Delay = 0.015
-    elseif _G.m1m_Mode == "0.02" then
-        _G.Fast_Delay = 0.02
-	end
-end)
-
-    local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
-        Title = "Weapon",
-        Description = "",
-        Values = {'Melee','Sword','Blox Fruit'},
-        Multi = false,
-        Default = 1,
-    })
-    DropdownSelectWeapon:SetValue('Melee')
-    DropdownSelectWeapon:OnChanged(function(Value)
-        ChooseWeapon = Value
-    end)
-    task.spawn(function()
-        while wait() do
-            pcall(function()
-                if ChooseWeapon == "Melee" then
-                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                        if v.ToolTip == "Melee" then
-                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                                SelectWeapon = v.Name
-                            end
-                        end
-                    end
-                elseif ChooseWeapon == "Sword" then
-                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                        if v.ToolTip == "Sword" then
-                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                                SelectWeapon = v.Name
-                            end
-                        end
-                    end
-                elseif ChooseWeapon == "Blox Fruit" then
-                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                        if v.ToolTip == "Blox Fruit" then
-                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                                SelectWeapon = v.Name
-                            end
-                        end
-                    end
-                else
-                    for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                        if v.ToolTip == "Melee" then
-                            if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                                SelectWeapon = v.Name
-                            end
-                        end
-                    end
-                end
-            end)
-        end
-    end)
     
     Tabs.Main:AddParagraph({
         Title = "                ---------Fast Attack----------         ",
@@ -1915,7 +1834,6 @@ Tabs.Main:AddParagraph({
         end
         end)
         
-        if Third_Sea then
 Tabs.Main:AddParagraph({
         Title = "                ---------Bone Farm----------         ",
         Content = "                            "
@@ -2014,7 +1932,6 @@ spawn(function()
 	end
 	end
 	end)
-end
         
         
 

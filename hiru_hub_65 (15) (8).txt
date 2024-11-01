@@ -1581,7 +1581,12 @@ Tabs.home:AddButton({
         end
     })
     
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Fast attack", Default = false })
+    Tabs.Main:AddParagraph({
+        Title = "                ---------Fast Attack----------         ",
+        Content = "                            "
+    }) 
+    
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Fast attack", Default = true })
 
     Toggle:OnChanged(function(Value)
         Fast = Value
@@ -1628,40 +1633,35 @@ spawn(function()
     end)
 end)
     
-local listfastattack = {'0.01','0.05','0.015','0.001','0.1','0.005','0','0.02'}
+local listfastattack = {'Nomal','Fast Attack','Supper Fast attack'}
 
     local DropdownDelayAttack = Tabs.Main:AddDropdown("DropdownDelayAttack", {
         Title = "Select Fast Attack",
-        Description = "",
+        Description = "Chọn đánh nhanh",
         Values = listfastattack,
         Multi = false,
         Default = 1,
     })
-    DropdownDelayAttack:SetValue("0.05")
+    DropdownDelayAttack:SetValue("Nomal")
     DropdownDelayAttack:OnChanged(function(Value)
     _G.m1m_Mode = Value
-	if _G.m1m_Mode == "0.1" then
-		_G.Fast_Delay = 0.1
-    elseif _G.m1m_Mode == "0.05" then
-		_G.Fast_Delay = 0.05
-	elseif _G.m1m_Mode == "0.005" then
-        _G.Fast_Delay = 0.005
-    elseif _G.m1m_Mode == "0.001" then
-		_G.Fast_Delay = 0.001
-    elseif _G.m1m_Mode == "0" then
-		_G.Fast_Delay = 0
-    elseif _G.m1m_Mode == "0.01" then
-        _G.Fast_Delay = 0.01
-    elseif _G.m1m_Mode == "0.015" then
-        _G.Fast_Delay = 0.015
-    elseif _G.m1m_Mode == "0.02" then
-        _G.Fast_Delay = 0.02
+	if _G.m1m_Mode == "Nomal" then
+		_G.Fast_Delay = 0.12
+    elseif _G.m1m_Mode == "Fast Attack" then
+		_G.Fast_Delay = 0.5
+	elseif _G.m1m_Mode == "Supper Fast attack'" then
+        _G.Fast_Delay = 0
 	end
 end)
 
+Tabs.Main:AddParagraph({
+        Title = "                ---------Weapon Farm----------         ",
+        Content = "                            "
+    }) 
+
     local DropdownSelectWeapon = Tabs.Main:AddDropdown("DropdownSelectWeapon", {
-        Title = "Weapon",
-        Description = "",
+        Title = "Slect Weapon",
+        Description = "chọn wepom",
         Values = {'Melee','Sword','Blox Fruit'},
         Multi = false,
         Default = 1,
@@ -1709,6 +1709,69 @@ end)
             end)
         end
     end)
+    
+    Tabs.Main:AddParagraph({
+        Title = "                ---------Setting Farm----------         ",
+        Content = "                            "
+    }) 
+    
+    local ToggleBringMob = Tabs.Main:AddToggle("ToggleBringMob", {Title = "Bring mob",Description = "", Default = true })
+    ToggleBringMob:OnChanged(function(Value)
+        _G.BringMob = Value
+    end)
+    Options.ToggleBringMob:SetValue(true)
+    spawn(function()
+        while wait() do
+            pcall(function()
+                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if _G.BringMob and bringmob then
+                        if v.Name == MonFarm and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                            if v.Name == "Factory Staff" then
+                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 500 then
+                                    v.Head.CanCollide = false
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    v.HumanoidRootPart.CFrame = FarmPos
+                                    if v.Humanoid:FindFirstChild("Animator") then
+                                        v.Humanoid.Animator:Destroy()
+                                    end
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                                end
+                            elseif v.Name == MonFarm then
+                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 337.5 then
+                                    v.HumanoidRootPart.CFrame = FarmPos
+                                    v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+                                    v.HumanoidRootPart.Transparency = 1
+                                    v.Humanoid.JumpPower = 0
+                                    v.Humanoid.WalkSpeed = 0
+                                    if v.Humanoid:FindFirstChild("Animator") then
+                                        v.Humanoid.Animator:Destroy()
+                                    end
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Head.CanCollide = false
+                                    v.Humanoid:ChangeState(11)
+                                    v.Humanoid:ChangeState(14)
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                                end
+                            end
+                        end
+                                end
+                            end
+                        end)
+                end
+            end)
+         
+
+    local ToggleBypassTP = Tabs.Main:AddToggle("ToggleBypassTP", {Title = "Bypass Tp", Description = "", Default = false })
+    ToggleBypassTP:OnChanged(function(Value)
+        BypassTP = Value
+    end)
+    Options.ToggleBypassTP:SetValue(false)
+    
+    Tabs.Main:AddParagraph({
+        Title = "                ---------Farming----------         ",
+        Content = "                            "
+    }) 
 
 
     local ToggleLevel = Tabs.Main:AddToggle("ToggleLevel", {
@@ -3899,58 +3962,7 @@ local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
 Camera:Stop()
 -- local random_number = math.random(325, 335)
 
-    local ToggleBringMob = Tabs.Setting:AddToggle("ToggleBringMob", {Title = "Enabled Bring Mob / Magnet",Description = "", Default = true })
-    ToggleBringMob:OnChanged(function(Value)
-        _G.BringMob = Value
-    end)
-    Options.ToggleBringMob:SetValue(true)
-    spawn(function()
-        while wait() do
-            pcall(function()
-                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                    if _G.BringMob and bringmob then
-                        if v.Name == MonFarm and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                            if v.Name == "Factory Staff" then
-                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 500 then
-                                    v.Head.CanCollide = false
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                    v.HumanoidRootPart.CFrame = FarmPos
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            elseif v.Name == MonFarm then
-                                if (v.HumanoidRootPart.Position - FarmPos.Position).Magnitude <= 337.5 then
-                                    v.HumanoidRootPart.CFrame = FarmPos
-                                    v.HumanoidRootPart.Size = Vector3.new(60,60,60)
-                                    v.HumanoidRootPart.Transparency = 1
-                                    v.Humanoid.JumpPower = 0
-                                    v.Humanoid.WalkSpeed = 0
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Head.CanCollide = false
-                                    v.Humanoid:ChangeState(11)
-                                    v.Humanoid:ChangeState(14)
-                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-                                end
-                            end
-                        end
-                                end
-                            end
-                        end)
-                end
-            end)
-         
 
-    local ToggleBypassTP = Tabs.Setting:AddToggle("ToggleBypassTP", {Title = "Enabled Bypass Tp", Description = "", Default = false })
-    ToggleBypassTP:OnChanged(function(Value)
-        BypassTP = Value
-    end)
-    Options.ToggleBypassTP:SetValue(false)
 
 
 local ToggleRemove = Tabs.Setting:AddToggle("ToggleRemove", {Title = "Enabled Remove Dame Text",Description = "", Default = true })

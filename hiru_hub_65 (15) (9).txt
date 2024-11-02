@@ -1,4 +1,4 @@
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tunguyen1441/MeraHub/refs/heads/main/FluentKid.lua.txt"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -6,10 +6,10 @@ local Window = Fluent:CreateWindow({
     Title = "NightMera",
     SubTitle = "Free Hub",
     TabWidth = 160,
-    Size = UDim2.fromOffset(500, 320),
+    Size = UDim2.fromOffset(500, 300),
     Acrylic = true,
     Theme = "Darker",
-    MinimizeKey = Enum.KeyCode.End
+    MinimizeKey = Enum.KeyCode.F15
 })
 local Tabs = {
      Status = Window:AddTab({ Title = "Status", Icon = "" }),
@@ -35,11 +35,6 @@ do
 
 
 
-local id = game.PlaceId
-if id == 2753915549 then First_Sea = true; elseif id == 4442272183 then Second_Sea = true; elseif id == 7449423635 then Third_Sea = true; else game:Shutdown() end;
-
-
-
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 	wait(1)
@@ -47,19 +42,29 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
 end)
 
 
+local id = game.PlaceId  -- Gets the current game ID
+
+if id == 2753915549 then
+    First_Sea = true
+elseif id == 4442272183 then  -- Replace with the actual Second Sea ID
+    Second_Sea = true
+elseif id == 7449423635 then  -- Replace with the actual Third Sea ID
+    Third_Sea = true
+else
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Xam-Vai-Cu-Ra-Day-La-Code-Sai-Game-Khong-Kick-Nha"))()
+end
+
 First_Sea = false
 Second_Sea = false
 Third_Sea = false
-local placeId = game.PlaceId
-if placeId == 2753915549 then
-First_Sea = true
-elseif placeId == 4442272183 then
-Second_Sea = true
-elseif placeId == 7449423635 then
-Third_Sea = true
-end
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Opfile/main/Ch%C6%B0a%20c%C3%B3%20ti%C3%AAu%20%C4%91%E1%BB%81.txt"))()
+if game.PlaceId == 2753915549 then
+    First_Sea = true
+elseif game.PlaceId == 4442272183 then  -- Replace with the actual ID for Second Sea
+    Second_Sea = true
+elseif game.PlaceId == 7449423635 then  -- Replace with the actual ID for Third Sea
+    Third_Sea = true
+end
 
 
 
@@ -1518,34 +1523,6 @@ function to(p)
 
 
 
-local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
-
-ScreenGui.Parent = game.CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
-ImageButton.Size = UDim2.new(0, 50, 0, 50)
-ImageButton.Draggable = true
-ImageButton.Image = "http://www.roblox.com/asset/?id=16601446273"
-ImageButton.MouseButton1Down:connect(function()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
-end)
-
-
-
-if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
-	game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
-end
-if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
-	game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
-end
-
-
 
 game.StarterGui:SetCore("SendNotification", {
                             Title = "Nightmera Hub", 
@@ -2475,7 +2452,11 @@ Tabs.Min:AddParagraph({
         end
     end)
 
-    local Material = Tabs.Main:AddSection("Material Farm")
+Tabs.ITM:AddParagraph({
+        Title = "                ---------Material Farm----------         ",
+        Content = "                            "
+    }) 
+
 
     if First_Sea then
         MaterialList = {
@@ -2489,7 +2470,7 @@ Tabs.Min:AddParagraph({
         }
         end
 
-    local DropdownMaterial = Tabs.Main:AddDropdown("DropdownMaterial", {
+    local DropdownMaterial = Tabs.ITM:AddDropdown("DropdownMaterial", {
         Title = "choose materials",
         Description = "",
         Values = MaterialList,
@@ -2503,8 +2484,8 @@ Tabs.Min:AddParagraph({
         SelectMaterial = Value
     end)
 
-    local ToggleMaterial = Tabs.Main:AddToggle("ToggleMaterial", {
-        Title = "Auto Farm Material",
+    local ToggleMaterial = Tabs.ITM:AddToggle("ToggleMaterial", {
+        Title = "Farm Material",
         Description = "", 
         Default = false })
 
@@ -2561,7 +2542,10 @@ Tabs.Min:AddParagraph({
       end)
 
       if Third_Sea then
-      local RoughSea = Tabs.Sea:AddSection("Kitsune")
+Tabs.ITM:AddParagraph({
+        Title = "                ---------Kitsune----------         ",
+        Content = "                            "
+    }) 
 	 
 local StatusKitsune = Tabs.Sea:AddParagraph({
     Title = "Kistune Island Spam",

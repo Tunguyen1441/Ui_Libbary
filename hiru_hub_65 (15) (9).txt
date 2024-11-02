@@ -1600,7 +1600,7 @@ spawn(function()
         if Duma then
              pcall(function()
                 game:GetService'VirtualUser':CaptureController()
-			    game:GetService'VirtualUser':Button1Down(Vector2.new(0))
+			    game:GetService'VirtualUser':Button1Down(Vector2.new(0,0))
             end)
         end
     end)
@@ -1623,7 +1623,7 @@ local listfastattack = {'Nomal','Fast Attack','Supper Fast attack'}
     elseif _G.m1m_Mode == "Fast Attack" then
 		_G.Fast_Delay = 0.5
 	elseif _G.m1m_Mode == "Supper Fast attack'" then
-        _G.Fast_Delay = -0
+        _G.Fast_Delay = 0
 	end
 end)
 

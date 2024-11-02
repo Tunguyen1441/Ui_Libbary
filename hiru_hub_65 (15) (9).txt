@@ -2542,11 +2542,13 @@ Tabs.ITM:AddParagraph({
       end)
 
       if Third_Sea then
-Tabs.ITM:AddParagraph({
+Tabs.Sea:AddParagraph({
         Title = "                ---------Kitsune----------         ",
         Content = "                            "
     }) 
+end
 	 
+	if Third_Sea then
 local StatusKitsune = Tabs.Sea:AddParagraph({
     Title = "Kistune Island Spam",
     Content = ""
@@ -5880,11 +5882,12 @@ spawn(function()
 end)
 
 
-local ToggleKillPlayerTrial = Tabs.Race:AddToggle("ToggleKillPlayerTrial", {Title = "Auto Kill player Trial!",Description = "", Default = false })
-ToggleKillPlayerTrial:OnChanged(function(Value)
-    _G.KillAfterTrials = value
+local Toggle = Tabs.Race:AddToggle("MyToggle", {Title = "Kill Player", Default = false })
+
+    Toggle:OnChanged(function(E)
+        _G.KillAfterTrials = E
     StopTween(_G.KillAfterTrials)
-end)
+    end)
 
 spawn(function()
     while wait() do 

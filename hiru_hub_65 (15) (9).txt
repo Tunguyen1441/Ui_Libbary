@@ -1600,7 +1600,7 @@ spawn(function()
         if Duma then
              pcall(function()
                 game:GetService'VirtualUser':CaptureController()
-			    game:GetService'VirtualUser':Button1Down(Vector2.new(0,0,0,0))
+			    game:GetService'VirtualUser':Button1Down(Vector2.new(0))
             end)
         end
     end)
@@ -1615,7 +1615,7 @@ local listfastattack = {'Nomal','Fast Attack','Supper Fast attack'}
         Multi = false,
         Default = 1,
     })
-    DropdownDelayAttack:SetValue("Nomal")
+    DropdownDelayAttack:SetValue("Supper Fast attack")
     DropdownDelayAttack:OnChanged(function(Value)
     _G.m1m_Mode = Value
 	if _G.m1m_Mode == "Nomal" then
@@ -1623,7 +1623,7 @@ local listfastattack = {'Nomal','Fast Attack','Supper Fast attack'}
     elseif _G.m1m_Mode == "Fast Attack" then
 		_G.Fast_Delay = 0.5
 	elseif _G.m1m_Mode == "Supper Fast attack'" then
-        _G.Fast_Delay = 0
+        _G.Fast_Delay = -0
 	end
 end)
 
@@ -1806,10 +1806,8 @@ Tabs.Main:AddParagraph({
         end
         end)
         
-Tabs.Main:AddParagraph({
-        Title = "                ---------Sub Farming----------         ",
-        Content = "                            "
-    }) 
+        
+       
       
 
     local ToggleMobAura = Tabs.Main:AddToggle("ToggleMobAura", {
@@ -1857,6 +1855,11 @@ Tabs.Main:AddParagraph({
         end
         end
       end)
+      
+      Tabs.Main:AddParagraph({
+        Title = "                ---------Sub Farming----------         ",
+        Content = "                            "
+    }) 
       
       local ToggleFactory = Tabs.Main:AddToggle("ToggleFactory", {Title = "Farm Factory",Description = "Đánh nhà máy", Default = false })
         ToggleFactory:OnChanged(function(Value)
@@ -5938,6 +5941,7 @@ local Mastery = Tabs.Race:AddSection("Auto Train")
 local ToggleAutoAcientQuest = Tabs.Race:AddToggle("ToggleAutoAcientQuest", {Title = "Auto Train",Description = "", Default = false })
 ToggleAutoAcientQuest:OnChanged(function(Value)
     AutoFarmAcient = Value
+    StopTween(AutoFarmAcient)
 end)
 Options.ToggleAutoAcientQuest:SetValue(false)
 local AcientCframe = CFrame.new(216.211181640625, 126.9352035522461, -12599.0732421875)
